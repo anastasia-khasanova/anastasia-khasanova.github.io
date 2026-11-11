@@ -1,0 +1,452 @@
+{
+  "date": "2026-11-06",
+  "method": "Built-in image generation, synthetic elevated wide enclosure views",
+  "images": [
+    {
+      "id": "1-1",
+      "title": "Львята — Подросшие",
+      "habitat": "grassy lion habitat, large timber climbing platforms and shade shelters",
+      "animals": [
+        "juvenile male lion cub golden tan fur",
+        "juvenile female lion cub sandy fur",
+        "young male lion cub pale gold fur"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "2-1",
+      "title": "Лев Гермес",
+      "habitat": "large grassy lion enclosure with wooden climbing deck",
+      "animals": [
+        "adult majestic male African lion dark golden mane"
+      ],
+      "count": 1,
+      "view": 1
+    },
+    {
+      "id": "3-1",
+      "title": "Капибара",
+      "habitat": "lush capybara enclosure with a natural swimming pond and grass",
+      "animals": [
+        "capybara rich chestnut brown coat"
+      ],
+      "count": 1,
+      "view": 1
+    },
+    {
+      "id": "4-1",
+      "title": "Альпака",
+      "habitat": "alpaca pasture with grass, sandy path and wooden stable",
+      "animals": [
+        "fluffy cream white alpaca"
+      ],
+      "count": 1,
+      "view": 1
+    },
+    {
+      "id": "5-1",
+      "title": "Еноты",
+      "habitat": "woodland raccoon enclosure with hollow trunks, climbing branches and a small stream",
+      "animals": [
+        "raccoon silver gray fur dark eye mask",
+        "raccoon warm gray fur black face mask"
+      ],
+      "count": 2,
+      "view": 1
+    },
+    {
+      "id": "6-1",
+      "title": "Тигры",
+      "habitat": "spacious tiger habitat with rocks, pool, bamboo and forest edge",
+      "animals": [
+        "Amur tiger pale orange thick fur",
+        "Bengal tiger bright orange fur",
+        "Sumatran tiger deep orange narrow stripes",
+        "Malayan tiger rich orange fur"
+      ],
+      "count": 4,
+      "view": 1
+    },
+    {
+      "id": "6-2",
+      "title": "Тигры",
+      "habitat": "spacious tiger habitat with rocks, pool, bamboo and forest edge",
+      "animals": [
+        "Amur tiger pale orange thick fur",
+        "Bengal tiger bright orange fur",
+        "Sumatran tiger deep orange narrow stripes",
+        "Malayan tiger rich orange fur"
+      ],
+      "count": 4,
+      "view": 2
+    },
+    {
+      "id": "6-3",
+      "title": "Тигры",
+      "habitat": "spacious tiger habitat with rocks, pool, bamboo and forest edge",
+      "animals": [
+        "Amur tiger pale orange thick fur",
+        "Bengal tiger bright orange fur",
+        "Sumatran tiger deep orange narrow stripes",
+        "Malayan tiger rich orange fur"
+      ],
+      "count": 4,
+      "view": 3
+    },
+    {
+      "id": "7-1",
+      "title": "Пантера — Наоми",
+      "habitat": "spacious black leopard enclosure with climbing logs, rocks and woodland",
+      "animals": [
+        "elegant melanistic black leopard, subtle black rosettes, amber eyes"
+      ],
+      "count": 1,
+      "view": 1
+    },
+    {
+      "id": "8-1",
+      "title": "Амурские коты",
+      "habitat": "Amur leopard cat woodland enclosure with brush, boulders and hollow logs",
+      "animals": [
+        "Amur leopard cat, small wild cat gray spotted coat",
+        "Amur leopard cat, small wild cat warm brown spotted fur"
+      ],
+      "count": 2,
+      "view": 1
+    },
+    {
+      "id": "9-1",
+      "title": "Страусы",
+      "habitat": "large ostrich paddock with sandy earth, grass patches and a shade shelter",
+      "animals": [
+        "adult male ostrich black and white plumage",
+        "adult female ostrich gray brown plumage",
+        "young adult ostrich slate gray plumage"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "10-1",
+      "title": "Грифы",
+      "habitat": "large griffon vulture aviary with branches, rock ledges and grass",
+      "animals": [
+        "griffon vulture sandy brown feathers white neck ruff",
+        "cinereous vulture dark brown feathers"
+      ],
+      "count": 2,
+      "view": 1
+    },
+    {
+      "id": "11-1",
+      "title": "Пантеры",
+      "habitat": "spacious black panther enclosure with timber platforms and woodland",
+      "animals": [
+        "black leopard, subtle rosettes, golden eyes",
+        "black leopard, olive amber eyes",
+        "black jaguar, compact broad head, yellow eyes"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "11-2",
+      "title": "Пантеры",
+      "habitat": "spacious black panther enclosure with timber platforms and woodland",
+      "animals": [
+        "black leopard, subtle rosettes, golden eyes",
+        "black leopard, olive amber eyes",
+        "black jaguar, compact broad head, yellow eyes"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "12-1",
+      "title": "Птицы",
+      "habitat": "large natural bird aviary with pond, nesting islands, pelicans, geese and ducks",
+      "animals": [
+        "small flock of elegant white pelicans beside a clean pond",
+        "small group of white and gray geese on grassy pond bank",
+        "small mixed group of colorful ducks beside a blue green pond"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "12-2",
+      "title": "Птицы",
+      "habitat": "large natural bird aviary with pond, nesting islands, pelicans, geese and ducks",
+      "animals": [
+        "small flock of elegant white pelicans beside a clean pond",
+        "small group of white and gray geese on grassy pond bank",
+        "small mixed group of colorful ducks beside a blue green pond"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "12-3",
+      "title": "Птицы",
+      "habitat": "large natural bird aviary with pond, nesting islands, pelicans, geese and ducks",
+      "animals": [
+        "small flock of elegant white pelicans beside a clean pond",
+        "small group of white and gray geese on grassy pond bank",
+        "small mixed group of colorful ducks beside a blue green pond"
+      ],
+      "count": 3,
+      "view": 3
+    },
+    {
+      "id": "13-1",
+      "title": "Горный лев",
+      "habitat": "large cougar enclosure with rock ledges, meadow and fallen logs",
+      "animals": [
+        "mountain lion cougar, tan fur"
+      ],
+      "count": 1,
+      "view": 1
+    },
+    {
+      "id": "14-1",
+      "title": "Ягуар",
+      "habitat": "jaguar habitat with large pond, lush planting and rocky logs",
+      "animals": [
+        "jaguar golden coat large black rosettes"
+      ],
+      "count": 1,
+      "view": 1
+    },
+    {
+      "id": "16-1",
+      "title": "Львы — Младший прайд",
+      "habitat": "young lions grassy enclosure with timber play structures",
+      "animals": [
+        "young adult male lion small tawny mane",
+        "young adult lioness golden brown fur",
+        "young adult lioness pale sandy fur"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "16-2",
+      "title": "Львы — Младший прайд",
+      "habitat": "young lions grassy enclosure with timber play structures",
+      "animals": [
+        "young adult male lion small tawny mane",
+        "young adult lioness golden brown fur",
+        "young adult lioness pale sandy fur"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "17-1",
+      "title": "Львята — Сироты",
+      "habitat": "lion cub nursery outdoor enclosure with low logs, sandy play zone and grass",
+      "animals": [
+        "small male lion cub gold fur",
+        "small lion cub sandy fur",
+        "small female lion cub pale gold fur"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "18-1",
+      "title": "Домашний скот — Овцы и куры",
+      "habitat": "rural sheep and chicken paddock with grass and a wooden barn",
+      "animals": [
+        "fluffy white sheep",
+        "cream wool sheep dark muzzle",
+        "fluffy silver white sheep",
+        "domestic red brown rooster"
+      ],
+      "count": 4,
+      "view": 1
+    },
+    {
+      "id": "19-1",
+      "title": "Рыси",
+      "habitat": "Eurasian lynx forest enclosure with climbing branches, meadow and rocks",
+      "animals": [
+        "Eurasian lynx, tawny spotted fur black ear tufts",
+        "Eurasian lynx, silvery spotted fur black ear tufts"
+      ],
+      "count": 2,
+      "view": 1
+    },
+    {
+      "id": "20-1",
+      "title": "Копытные — Лоси и олени",
+      "habitat": "large mixed moose and red deer meadow with forest edge and water trough",
+      "animals": [
+        "adult bull moose with broad antlers",
+        "adult female moose dark brown coat",
+        "adult red deer stag branched antlers",
+        "adult female red deer, no antlers"
+      ],
+      "count": 4,
+      "view": 1
+    },
+    {
+      "id": "20-2",
+      "title": "Копытные — Лоси и олени",
+      "habitat": "large mixed moose and red deer meadow with forest edge and water trough",
+      "animals": [
+        "adult bull moose with broad antlers",
+        "adult female moose dark brown coat",
+        "adult red deer stag branched antlers",
+        "adult female red deer, no antlers"
+      ],
+      "count": 4,
+      "view": 2
+    },
+    {
+      "id": "20-3",
+      "title": "Копытные — Лоси и олени",
+      "habitat": "large mixed moose and red deer meadow with forest edge and water trough",
+      "animals": [
+        "adult bull moose with broad antlers",
+        "adult female moose dark brown coat",
+        "adult red deer stag branched antlers",
+        "adult female red deer, no antlers"
+      ],
+      "count": 4,
+      "view": 3
+    },
+    {
+      "id": "21-1",
+      "title": "Верблюды",
+      "habitat": "spacious Bactrian camel sandy paddock with scattered grass and a rustic shelter",
+      "animals": [
+        "Bactrian camel, tawny fur two humps",
+        "Bactrian camel sandy cream fur two humps",
+        "Bactrian camel rich dark brown fur two humps"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "21-2",
+      "title": "Верблюды",
+      "habitat": "spacious Bactrian camel sandy paddock with scattered grass and a rustic shelter",
+      "animals": [
+        "Bactrian camel, tawny fur two humps",
+        "Bactrian camel sandy cream fur two humps",
+        "Bactrian camel rich dark brown fur two humps"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "22-1",
+      "title": "Медведи — Гималайские",
+      "habitat": "Asiatic black bear habitat with large logs, rock ledges and small pool",
+      "animals": [
+        "Asiatic black bear, white crescent chest marking",
+        "Asiatic black bear, fluffy black fur white crescent chest",
+        "Asiatic black bear, glossy black fur white crescent chest"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "22-2",
+      "title": "Медведи — Гималайские",
+      "habitat": "Asiatic black bear habitat with large logs, rock ledges and small pool",
+      "animals": [
+        "Asiatic black bear, white crescent chest marking",
+        "Asiatic black bear, fluffy black fur white crescent chest",
+        "Asiatic black bear, glossy black fur white crescent chest"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "23-1",
+      "title": "Медведи — Бурые",
+      "habitat": "large brown bear woodland enclosure with pond, rocks and grassy bank",
+      "animals": [
+        "European brown bear dark brown thick fur",
+        "European brown bear light brown fur",
+        "European brown bear warm chocolate fur"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "23-2",
+      "title": "Медведи — Бурые",
+      "habitat": "large brown bear woodland enclosure with pond, rocks and grassy bank",
+      "animals": [
+        "European brown bear dark brown thick fur",
+        "European brown bear light brown fur",
+        "European brown bear warm chocolate fur"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "23-3",
+      "title": "Медведи — Бурые",
+      "habitat": "large brown bear woodland enclosure with pond, rocks and grassy bank",
+      "animals": [
+        "European brown bear dark brown thick fur",
+        "European brown bear light brown fur",
+        "European brown bear warm chocolate fur"
+      ],
+      "count": 3,
+      "view": 3
+    },
+    {
+      "id": "24-1",
+      "title": "Волки",
+      "habitat": "spacious gray wolf woodland enclosure with grassy clearing and rocks",
+      "animals": [
+        "gray wolf silver gray coat",
+        "gray wolf warm brown gray coat",
+        "gray wolf pale winter coat"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "24-2",
+      "title": "Волки",
+      "habitat": "spacious gray wolf woodland enclosure with grassy clearing and rocks",
+      "animals": [
+        "gray wolf silver gray coat",
+        "gray wolf warm brown gray coat",
+        "gray wolf pale winter coat"
+      ],
+      "count": 3,
+      "view": 2
+    },
+    {
+      "id": "25-1",
+      "title": "Собаки",
+      "habitat": "large shelter dog exercise paddock with grass and wooden cabins",
+      "animals": [
+        "friendly large German shepherd dog",
+        "friendly shepherd mix dog black and tan coat",
+        "friendly fluffy brown rescue dog"
+      ],
+      "count": 3,
+      "view": 1
+    },
+    {
+      "id": "26-1",
+      "title": "Белки",
+      "habitat": "red squirrel walk-through aviary with large trees, branches and wooden nest boxes",
+      "animals": [
+        "Eurasian red squirrel red orange fur tufted ears"
+      ],
+      "count": 1,
+      "view": 1
+    }
+  ],
+  "originalEnclosurePreserved": 15
+}

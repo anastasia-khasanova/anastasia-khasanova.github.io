@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="806.4" height="806.4" viewBox="0 0 806.4 806.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle id="Ellipse satellite" cx="403.2" cy="403.2" r="401.744" stroke="url(#paint0_linear_0_1009)" stroke-width="2.912"/>
+<defs>
+<linearGradient id="paint0_linear_0_1009" x1="816.312" y1="403.411" x2="-7.70802" y2="404.17" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.6"/>
+<stop offset="0.365385" stop-color="white" stop-opacity="0"/>
+<stop offset="0.591346" stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>

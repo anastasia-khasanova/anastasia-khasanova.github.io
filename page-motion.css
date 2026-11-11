@@ -1,0 +1,8 @@
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.6s}
+::view-transition-image-pair(root){isolation:isolate}
+::view-transition-old(root){animation:portfolio-leave .55s cubic-bezier(.4,0,.2,1) both;mix-blend-mode:normal}
+::view-transition-new(root){animation:portfolio-arrive .65s cubic-bezier(.16,1,.3,1) both;mix-blend-mode:normal}
+@keyframes portfolio-leave{from{opacity:1}to{opacity:0}}
+@keyframes portfolio-arrive{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){animation:none}}

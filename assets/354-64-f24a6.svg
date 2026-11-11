@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="gamepad_24dp_E3E3E3 1" clip-path="url(#clip0_0_6)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M37.5 18.75V5H22.5V18.75L30 26.25L37.5 18.75ZM18.75 22.5H5V37.5H18.75L26.25 30L18.75 22.5ZM22.5 41.25V55H37.5V41.25L30 33.75L22.5 41.25ZM41.25 22.5L33.75 30L41.25 37.5H55V22.5H41.25Z" fill="#F5F5F7"/>
+</g>
+<defs>
+<clipPath id="clip0_0_6">
+<rect width="60" height="60" fill="white"/>
+</clipPath>
+</defs>
+</svg>

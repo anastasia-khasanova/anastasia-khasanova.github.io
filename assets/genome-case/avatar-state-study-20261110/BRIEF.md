@@ -1,0 +1,9 @@
+# Проба состояний аватара — 2026-11-10
+
+Figma frame: https://www.figma.com/design/5kgYfkmXmtDAuJSCu2N6Pu?node-id=708-999
+
+Generated with built-in image_gen, transparent_background=true, using avatars-20261109/boy-neuro.png as identity and material reference. Generated PNG copied unchanged, no baked red highlight. Only one new problem pose generated in this trial. Other proposed problem poses are documented in the editable Figma table and are not generated yet.
+
+Prompt: Create one production character asset for a fictional genome editor. Reference image defines exact character identity, age, proportions, hairstyle, clothing and luminous blue 3D material. Full-body young cartoon boy, barefoot, blue polo and shorts, all fingers and feet visible, centered with generous transparent margins, front three-quarter view. New problem pose for mental overload: worried mild frown, eyes open, shoulders slightly tense, both hands touching his temples, feet comfortably apart. No horror, no tears or exaggerated suffering. Preserve recognizable same boy and glossy translucent electric cyan/blue shading throughout his entire head, hair, body and clothes. All blue only, absolutely no red/orange/yellow hotspots or flesh colors. No background, no floor, no cast shadow, no background glow cloud; genuinely transparent alpha outside the character. Crisp clean silhouette including finger gaps. No text, symbols, icons or UI. This is a reusable source asset; red problem highlights will be a separate vector mask later, do not bake any into this image.
+
+Figma layering: blue source PNG + duplicate PNG alpha mask + red radial ellipse in COLOR blend mode, grouped separately from the source. Hide the highlight group to return to unchanged blue. This is an editable Figma proof; website integration/animation has not been changed. Head region alignment is specific to this pose and must be configured per future asset.

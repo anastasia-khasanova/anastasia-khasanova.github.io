@@ -1,0 +1,17 @@
+/* Common case-ending spacing and controls for memory, genome and zoo. */
+:root{--case-gallery-footer-gap:48px}
+.case-ending .related-projects{padding-bottom:var(--case-gallery-footer-gap)}
+.case-ending .case-footer{padding-top:0}
+[data-node-id="734:4214"],[data-node-id="930:7992"]{height:var(--case-gallery-footer-gap)}
+.related-track,[data-node-id="734:4192"],[data-node-id="930:7970"]{scrollbar-width:none}
+.related-track::-webkit-scrollbar,[data-node-id="734:4192"]::-webkit-scrollbar,[data-node-id="930:7970"]::-webkit-scrollbar{display:none}
+.case-footer-in-view :is(.back-top,.gc-top,.zc-top){opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+@media(max-width:1024px){
+ :root{--case-gallery-footer-gap:32px}
+ .zc-mobile-ending [data-node-id="930:7970"]{height:auto;min-height:0;align-items:stretch}
+ .zc-mobile-ending [data-node-id="930:7966"]{gap:32px}
+}
+@media(max-width:700px){
+ [data-node-id="734:4215"]{grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
+ [data-node-id="734:4223"]{position:static;inset:auto;justify-self:end;align-self:center}
+}

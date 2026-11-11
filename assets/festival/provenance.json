@@ -1,0 +1,24 @@
+{
+  "source": "https://www.behance.net/gallery/187540721/Visual-identity-for-festival",
+  "use": "Portfolio preview composed from original case graphics; source files and crops retained locally.",
+  "palette": [
+    "#0100FE",
+    "#FFFFFF",
+    "#282828"
+  ],
+  "sourceModules": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "david-original.png": {
+    "source": "User supplied codex-clipboard-c5a9ce46-fcca-4a55-87ee-d9eab046a27f.png",
+    "note": "Figma export unavailable due to access rights; supplied image used intact."
+  }
+}

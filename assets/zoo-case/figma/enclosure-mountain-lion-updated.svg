@@ -1,0 +1,15 @@
+<svg width="137" height="107" viewBox="0 0 137 107" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M119.245 10.7417L29.9143 0.141293C18.9456 -1.16031 8.99848 6.67646 7.69688 17.6452L0 89.8449L127.218 106.978L136.748 32.9591C138.05 21.9904 130.213 12.0433 119.245 10.7417Z" fill="white" fill-opacity="0.5"/>
+<path d="M119.245 10.7417L29.9143 0.141293C18.9456 -1.16031 8.99848 6.67646 7.69688 17.6452L0 89.8449L127.218 106.978L136.748 32.9591C138.05 21.9904 130.213 12.0433 119.245 10.7417Z" fill="url(#pattern0_547_58)" fill-opacity="0.15"/>
+<path d="M119.245 10.7417L29.9143 0.141293C18.9456 -1.16031 8.99848 6.67646 7.69688 17.6452L0 89.8449L127.218 106.978L136.748 32.9591C138.05 21.9904 130.213 12.0433 119.245 10.7417Z" stroke="#19402E" stroke-opacity="0.6" stroke-linecap="round" stroke-dasharray="2 5"/>
+<defs>
+<pattern id="pattern0_547_58" patternUnits="userSpaceOnUse" patternTransform="matrix(4.48 0 0 8.96 0 -1.16031)" preserveAspectRatio="none" viewBox="0 0 11.2 22.4" width="1" height="1">
+<use xlink:href="#pattern0_547_58_inner" transform="translate(-11.2 0)"/>
+<g id="pattern0_547_58_inner">
+<circle cx="2.5" cy="2.5" r="2.5" fill="#19402E"/>
+</g>
+<use xlink:href="#pattern0_547_58_inner" transform="translate(-5.6 11.2)"/>
+<use xlink:href="#pattern0_547_58_inner" transform="translate(5.6 11.2)"/>
+</pattern></defs>
+</svg>
+

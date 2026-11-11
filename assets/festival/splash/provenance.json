@@ -1,0 +1,25 @@
+{
+  "fileKey": "VLv9uercEmzZg9ZPjnvLEX",
+  "nodeId": "963:2748",
+  "source": "https://www.figma.com/design/VLv9uercEmzZg9ZPjnvLEX/Portfolio-project?node-id=963-2748",
+  "assets": [
+    "1fb58.png",
+    "20157.svg",
+    "40849.svg",
+    "5b7e0.png",
+    "62ee8.svg",
+    "9d3b0.svg",
+    "a56b7.svg",
+    "b6a9f.svg",
+    "b7516.png",
+    "d9e98.png",
+    "dda3f.svg",
+    "02ee3.svg"
+  ],
+  "note": "Original individual Figma assets. Positions and rotations from get_design_context. Animation wrappers preserve original artwork.",
+  "retouch": {
+    "asset": "achilles-retouched.png",
+    "source": "b7516.png",
+    "method": "Imagegen retouch requested by user: repair translucent neck defect, hands anatomy and nipple/pectoral placement. AI-derived variant, not untouched Figma export."
+  }
+}

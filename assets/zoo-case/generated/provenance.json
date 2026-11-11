@@ -1,0 +1,396 @@
+{
+  "date": "2026-11-06",
+  "method": "OpenAI built-in image generation; synthetic zoo case photography",
+  "portraits": [
+    {
+      "id": "1-1",
+      "name": "Тимба",
+      "species": "juvenile male lion cub golden tan fur",
+      "group": false
+    },
+    {
+      "id": "1-2",
+      "name": "Нала",
+      "species": "juvenile female lion cub sandy fur",
+      "group": false
+    },
+    {
+      "id": "1-3",
+      "name": "Пиксель",
+      "species": "young male lion cub pale gold fur",
+      "group": false
+    },
+    {
+      "id": "2-1",
+      "name": "Гермес",
+      "species": "adult majestic male African lion dark golden mane",
+      "group": false
+    },
+    {
+      "id": "3-1",
+      "name": "Плюша",
+      "species": "capybara rich chestnut brown coat",
+      "group": false
+    },
+    {
+      "id": "4-1",
+      "name": "Тучка",
+      "species": "fluffy cream white alpaca",
+      "group": false
+    },
+    {
+      "id": "5-1",
+      "name": "Финик",
+      "species": "raccoon silver gray fur dark eye mask",
+      "group": false
+    },
+    {
+      "id": "5-2",
+      "name": "Тиша",
+      "species": "raccoon warm gray fur black face mask",
+      "group": false
+    },
+    {
+      "id": "6-1",
+      "name": "Амур",
+      "species": "Amur tiger pale orange thick fur",
+      "group": false
+    },
+    {
+      "id": "6-2",
+      "name": "Беня",
+      "species": "Bengal tiger bright orange fur",
+      "group": false
+    },
+    {
+      "id": "6-3",
+      "name": "Шерхан",
+      "species": "Sumatran tiger deep orange narrow stripes",
+      "group": false
+    },
+    {
+      "id": "6-4",
+      "name": "Раджа",
+      "species": "Malayan tiger rich orange fur",
+      "group": false
+    },
+    {
+      "id": "7-1",
+      "name": "Наоми",
+      "species": "elegant melanistic black leopard, subtle black rosettes, amber eyes",
+      "group": false
+    },
+    {
+      "id": "8-1",
+      "name": "Кедр",
+      "species": "Amur leopard cat, small wild cat gray spotted coat",
+      "group": false
+    },
+    {
+      "id": "8-2",
+      "name": "Искра",
+      "species": "Amur leopard cat, small wild cat warm brown spotted fur",
+      "group": false
+    },
+    {
+      "id": "9-1",
+      "name": "Оскар",
+      "species": "adult male ostrich black and white plumage",
+      "group": false
+    },
+    {
+      "id": "9-2",
+      "name": "Грета",
+      "species": "adult female ostrich gray brown plumage",
+      "group": false
+    },
+    {
+      "id": "9-3",
+      "name": "Рони",
+      "species": "young adult ostrich slate gray plumage",
+      "group": false
+    },
+    {
+      "id": "10-1",
+      "name": "Гектор",
+      "species": "griffon vulture sandy brown feathers white neck ruff",
+      "group": false
+    },
+    {
+      "id": "10-2",
+      "name": "Скай",
+      "species": "cinereous vulture dark brown feathers",
+      "group": false
+    },
+    {
+      "id": "11-1",
+      "name": "Багира",
+      "species": "black leopard, subtle rosettes, golden eyes",
+      "group": false
+    },
+    {
+      "id": "11-2",
+      "name": "Нокс",
+      "species": "black leopard, olive amber eyes",
+      "group": false
+    },
+    {
+      "id": "11-3",
+      "name": "Тень",
+      "species": "black jaguar, compact broad head, yellow eyes",
+      "group": false
+    },
+    {
+      "id": "12-1",
+      "name": "Пеликаны",
+      "species": "small flock of elegant white pelicans beside a clean pond",
+      "group": true
+    },
+    {
+      "id": "12-2",
+      "name": "Гуси",
+      "species": "small group of white and gray geese on grassy pond bank",
+      "group": true
+    },
+    {
+      "id": "12-3",
+      "name": "Водоплавающие",
+      "species": "small mixed group of colorful ducks beside a blue green pond",
+      "group": true
+    },
+    {
+      "id": "13-1",
+      "name": "Кай",
+      "species": "mountain lion cougar, tan fur",
+      "group": false
+    },
+    {
+      "id": "14-1",
+      "name": "Янтарь",
+      "species": "jaguar golden coat large black rosettes",
+      "group": false
+    },
+    {
+      "id": "15-1",
+      "name": "Леон",
+      "species": "adult male lion golden mane",
+      "group": false
+    },
+    {
+      "id": "15-2",
+      "name": "Матильда",
+      "species": "adult lioness pale sandy fur",
+      "group": false
+    },
+    {
+      "id": "15-3",
+      "name": "Платон",
+      "species": "adult male lion dark brown thick mane",
+      "group": false
+    },
+    {
+      "id": "15-4",
+      "name": "Симба",
+      "species": "adult male lion warm tawny mane",
+      "group": false
+    },
+    {
+      "id": "15-5",
+      "name": "Персиваль",
+      "species": "adult male lion pale blonde mane",
+      "group": false
+    },
+    {
+      "id": "16-1",
+      "name": "Арес",
+      "species": "young adult male lion small tawny mane",
+      "group": false
+    },
+    {
+      "id": "16-2",
+      "name": "Сафира",
+      "species": "young adult lioness golden brown fur",
+      "group": false
+    },
+    {
+      "id": "16-3",
+      "name": "Лея",
+      "species": "young adult lioness pale sandy fur",
+      "group": false
+    },
+    {
+      "id": "17-1",
+      "name": "Боня",
+      "species": "small male lion cub gold fur",
+      "group": false
+    },
+    {
+      "id": "17-2",
+      "name": "Тото",
+      "species": "small lion cub sandy fur",
+      "group": false
+    },
+    {
+      "id": "17-3",
+      "name": "Мила",
+      "species": "small female lion cub pale gold fur",
+      "group": false
+    },
+    {
+      "id": "18-1",
+      "name": "Белла",
+      "species": "fluffy white sheep",
+      "group": false
+    },
+    {
+      "id": "18-2",
+      "name": "Буся",
+      "species": "cream wool sheep dark muzzle",
+      "group": false
+    },
+    {
+      "id": "18-3",
+      "name": "Долли",
+      "species": "fluffy silver white sheep",
+      "group": false
+    },
+    {
+      "id": "18-4",
+      "name": "Петя",
+      "species": "domestic red brown rooster",
+      "group": false
+    },
+    {
+      "id": "19-1",
+      "name": "Клео",
+      "species": "Eurasian lynx, tawny spotted fur black ear tufts",
+      "group": false
+    },
+    {
+      "id": "19-2",
+      "name": "Тайга",
+      "species": "Eurasian lynx, silvery spotted fur black ear tufts",
+      "group": false
+    },
+    {
+      "id": "20-1",
+      "name": "Борей",
+      "species": "adult bull moose with broad antlers",
+      "group": false
+    },
+    {
+      "id": "20-2",
+      "name": "Енисей",
+      "species": "adult female moose dark brown coat",
+      "group": false
+    },
+    {
+      "id": "20-3",
+      "name": "Орион",
+      "species": "adult red deer stag branched antlers",
+      "group": false
+    },
+    {
+      "id": "20-4",
+      "name": "Луна",
+      "species": "adult female red deer, no antlers",
+      "group": false
+    },
+    {
+      "id": "21-1",
+      "name": "Султан",
+      "species": "Bactrian camel, tawny fur two humps",
+      "group": false
+    },
+    {
+      "id": "21-2",
+      "name": "Жасмин",
+      "species": "Bactrian camel sandy cream fur two humps",
+      "group": false
+    },
+    {
+      "id": "21-3",
+      "name": "Бархан",
+      "species": "Bactrian camel rich dark brown fur two humps",
+      "group": false
+    },
+    {
+      "id": "22-1",
+      "name": "Мишель",
+      "species": "Asiatic black bear, white crescent chest marking",
+      "group": false
+    },
+    {
+      "id": "22-2",
+      "name": "Юки",
+      "species": "Asiatic black bear, fluffy black fur white crescent chest",
+      "group": false
+    },
+    {
+      "id": "22-3",
+      "name": "Лотос",
+      "species": "Asiatic black bear, glossy black fur white crescent chest",
+      "group": false
+    },
+    {
+      "id": "23-1",
+      "name": "Потап",
+      "species": "European brown bear dark brown thick fur",
+      "group": false
+    },
+    {
+      "id": "23-2",
+      "name": "Марта",
+      "species": "European brown bear light brown fur",
+      "group": false
+    },
+    {
+      "id": "23-3",
+      "name": "Бруно",
+      "species": "European brown bear warm chocolate fur",
+      "group": false
+    },
+    {
+      "id": "24-1",
+      "name": "Грей",
+      "species": "gray wolf silver gray coat",
+      "group": false
+    },
+    {
+      "id": "24-2",
+      "name": "Лада",
+      "species": "gray wolf warm brown gray coat",
+      "group": false
+    },
+    {
+      "id": "24-3",
+      "name": "Север",
+      "species": "gray wolf pale winter coat",
+      "group": false
+    },
+    {
+      "id": "25-1",
+      "name": "Рекс",
+      "species": "friendly large German shepherd dog",
+      "group": false
+    },
+    {
+      "id": "25-2",
+      "name": "Джесси",
+      "species": "friendly shepherd mix dog black and tan coat",
+      "group": false
+    },
+    {
+      "id": "25-3",
+      "name": "Балу",
+      "species": "friendly fluffy brown rescue dog",
+      "group": false
+    },
+    {
+      "id": "26-1",
+      "name": "Рыжик",
+      "species": "Eurasian red squirrel red orange fur tufted ears",
+      "group": false
+    }
+  ]
+}

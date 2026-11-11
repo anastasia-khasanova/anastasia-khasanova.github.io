@@ -1,0 +1,10 @@
+/* Native browser cursors: no JavaScript position tracking or rendering delay. */
+.glow-cursor{display:none!important}
+@media(hover:hover) and (pointer:fine){
+ html,html body,html body *{cursor:url("assets/cursor-brand-arrow-v9.png") 22 20,auto!important}
+ html body a[href],html body a[href] *,html body button,html body button *,html body [role="button"],html body [role="button"] *,html body [role="link"],html body [role="link"] *{cursor:url("assets/cursor-brand-hand-v9.png") 28 20,pointer!important}
+ html body :disabled,html body :disabled *,html body [aria-disabled="true"],html body [inert],html body [inert] *{cursor:url("assets/cursor-brand-arrow-v9.png") 22 20,default!important}
+ html body input,html body textarea,html body [contenteditable="true"]{cursor:text!important}
+}
+@media(forced-colors:active){html,html body,html body *{cursor:revert!important}}
+@media(hover:hover) and (pointer:fine){html body .ink-playground .ink-canvas{cursor:url("assets/ink-pencil-brand-v3.png") 18 44,crosshair!important}}

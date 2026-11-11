@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="450" height="2028.5" viewBox="0 0 450 2028.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Union" d="M225 0C349.264 0 450 100.736 450 225C450 270.53 436.477 312.901 413.227 348.315C370.127 413.969 307.078 470.689 290.832 547.528C267.228 659.169 247.456 812.469 246.585 1014.24C247.443 1215.93 267.186 1369.2 290.771 1480.86C307.012 1557.75 370.112 1614.5 413.236 1680.2C436.48 1715.61 450 1757.98 450 1803.5C450 1927.77 349.264 2028.5 225 2028.5C100.736 2028.5 0.000142383 1927.77 0 1803.5C3.97847e-06 1758 13.5107 1715.64 36.7397 1680.24C79.7861 1614.63 142.745 1557.93 158.978 1481.16C182.583 1369.52 202.355 1216.21 203.227 1014.44C202.367 812.391 182.555 658.929 158.914 547.223C142.678 470.503 79.7713 413.842 36.7481 348.278C13.5139 312.871 0 270.514 0 225C0 100.736 100.736 0 225 0Z" fill="url(#paint0_radial_0_1687)"/>
+<defs>
+<radialGradient id="paint0_radial_0_1687" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(224.719 1606.85) rotate(90) scale(1177.39 1067.87)">
+<stop offset="0.374062" stop-color="white" stop-opacity="0.2"/>
+<stop offset="0.734125" stop-color="white" stop-opacity="0.4"/>
+<stop offset="1" stop-color="white"/>
+</radialGradient>
+</defs>
+</svg>

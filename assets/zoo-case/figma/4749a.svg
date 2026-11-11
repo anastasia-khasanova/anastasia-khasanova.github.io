@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="72" height="70.2285" viewBox="0 0 72 70.2285" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="mark" filter="url(#filter0_d_0_663)">
+<use xlink:href="#stroke0_0_663" fill="white"/>
+<use xlink:href="#stroke0_0_663" fill="#6595FE" fill-opacity="0.2"/>
+</g>
+<defs>
+<filter id="filter0_d_0_663" x="0" y="0" width="72" height="70.2285" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="10" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_0_663"/>
+<feOffset dx="2" dy="2"/>
+<feGaussianBlur stdDeviation="5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_663"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_663" result="shape"/>
+</filter>
+<path id="stroke0_0_663" d="M34 18C42.8366 18 50 24.767 50 33.1143C49.9999 41.4615 42.8366 48.2285 34 48.2285C25.1635 48.2285 18.0001 41.4614 18 33.1143C18 24.767 25.1634 18.0001 34 18Z"/>
+</defs>
+</svg>

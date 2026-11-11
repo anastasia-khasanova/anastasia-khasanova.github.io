@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="519.231" height="519.231" viewBox="0 0 519.231 519.231" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Ellipse satellite" d="M518.293 259.615C518.293 402.479 402.479 518.293 259.615 518.293C116.752 518.293 0.9375 402.479 0.9375 259.615C0.9375 116.752 116.752 0.9375 259.615 0.9375C402.479 0.9375 518.293 116.752 518.293 259.615Z" stroke-width="1.875" stroke="url(#paint0_linear_0_662)"/>
+<defs>
+<linearGradient id="paint0_linear_0_662" x1="259.615" y1="-4.82758" x2="260.098" y2="519.23" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.6"/>
+<stop offset="0.365385" stop-color="white" stop-opacity="0"/>
+<stop offset="0.591346" stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>

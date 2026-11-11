@@ -1,0 +1,134 @@
+{
+  "boy-intelligence": {
+    "file": "boy-intelligence.png",
+    "frame": [
+      1024,
+      1536,
+      119,
+      1428,
+      480.5
+    ],
+    "alphaZeroFraction": 0.7643814086914062
+  },
+  "boy-longevity": {
+    "file": "boy-longevity.png",
+    "frame": [
+      1024,
+      1536,
+      81,
+      1457,
+      488.0
+    ],
+    "alphaZeroFraction": 0.7062021891276041
+  },
+  "boy-strength": {
+    "file": "boy-strength.png",
+    "frame": [
+      1024,
+      1536,
+      84,
+      1419,
+      509.0
+    ],
+    "alphaZeroFraction": 0.6435629526774088
+  },
+  "boy-immune": {
+    "file": "boy-immune.png",
+    "frame": [
+      1024,
+      1536,
+      67,
+      1440,
+      512.5
+    ],
+    "alphaZeroFraction": 0.7482096354166666
+  },
+  "boy-neuro": {
+    "file": "boy-neuro.png",
+    "frame": [
+      1024,
+      1536,
+      77,
+      1485,
+      511.5
+    ],
+    "alphaZeroFraction": 0.6769212086995443
+  },
+  "boy-appearance": {
+    "file": "boy-appearance.png",
+    "frame": [
+      1024,
+      1536,
+      52,
+      1469,
+      528.0
+    ],
+    "alphaZeroFraction": 0.7081120808919271
+  },
+  "girl-intelligence": {
+    "file": "girl-intelligence.png",
+    "frame": [
+      1208,
+      1302,
+      92,
+      1243,
+      618.5
+    ],
+    "alphaZeroFraction": 0.7487258522293772
+  },
+  "girl-longevity": {
+    "file": "girl-longevity.png",
+    "frame": [
+      1078,
+      1459,
+      65,
+      1381,
+      529.5
+    ],
+    "alphaZeroFraction": 0.7022136289246834
+  },
+  "girl-strength": {
+    "file": "girl-strength.png",
+    "frame": [
+      1208,
+      1302,
+      52,
+      1241,
+      607.0
+    ],
+    "alphaZeroFraction": 0.7459632913195187
+  },
+  "girl-immune": {
+    "file": "girl-immune.png",
+    "frame": [
+      1208,
+      1302,
+      91,
+      1244,
+      617.5
+    ],
+    "alphaZeroFraction": 0.7651982177190466
+  },
+  "girl-neuro": {
+    "file": "girl-neuro.png",
+    "frame": [
+      1086,
+      1448,
+      96,
+      1387,
+      552.0
+    ],
+    "alphaZeroFraction": 0.7169392214319872
+  },
+  "girl-appearance": {
+    "file": "girl-appearance.png",
+    "frame": [
+      1086,
+      1448,
+      96,
+      1382,
+      538.5
+    ],
+    "alphaZeroFraction": 0.7031442365414161
+  }
+}

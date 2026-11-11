@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="87.5" height="56.7825" viewBox="0 0 87.5 56.7825" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Element">
+<foreignObject x="-19.3281" y="-29.8332" width="125.812" height="116.915"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(15.15px);clip-path:url(#bgblur_0_0_40_clip_path);height:100%;width:100%"></div></foreignObject><path d="M43.6724 56.7825C55.8546 56.7825 66.8718 42.6116 74.7931 25.0278C81.8784 9.29987 60.4572 0.466005 43.207 0.466005C26.6181 0.466005 5.52534 9.20635 12.2568 24.3682C20.1984 42.2559 31.3383 56.7825 43.6724 56.7825Z" fill="#000"/><path id="Ellipse" data-figma-bg-blur-radius="30.2992" d="M43.6724 56.7825C55.8546 56.7825 66.8718 42.6116 74.7931 25.0278C81.8784 9.29987 60.4572 0.466005 43.207 0.466005C26.6181 0.466005 5.52534 9.20635 12.2568 24.3682C20.1984 42.2559 31.3383 56.7825 43.6724 56.7825Z" fill="url(#paint0_linear_0_40)"/>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_40_clip_path" transform="translate(19.3281 29.8332)"><path d="M43.6724 56.7825C55.8546 56.7825 66.8718 42.6116 74.7931 25.0278C81.8784 9.29987 60.4572 0.466005 43.207 0.466005C26.6181 0.466005 5.52534 9.20635 12.2568 24.3682C20.1984 42.2559 31.3383 56.7825 43.6724 56.7825Z"/>
+</clipPath><linearGradient id="paint0_linear_0_40" x1="43.6724" y1="-41.112" x2="43.6724" y2="56.7825" gradientUnits="userSpaceOnUse">
+<stop offset="0.15" stop-color="#9670A6" stop-opacity="0"/>
+<stop offset="1" stop-color="#9670A6"/>
+</linearGradient>
+</defs>
+</svg>

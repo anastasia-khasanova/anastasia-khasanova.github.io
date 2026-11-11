@@ -1,0 +1,52 @@
+[
+  {
+    "id": "boy-strength",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME boy. Change the POSE to this specifically: Standing with gently dropped shoulders, one hand supporting the opposite upper arm, the other arm hanging loosely. No flexing or raised fists. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "girl-strength",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME girl. Change the POSE to this specifically: Standing with feet comfortably apart, a slight forward lean, both hands resting on her thighs just above the knees, as after tiring exercise. No stretching pose or raised arm. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "boy-intelligence",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME boy. Change the POSE to this specifically: One index finger lightly touches the forehead, the other hand held open palm-up at waist height, a small puzzled head tilt. No hand on chin. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "girl-intelligence",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME girl. Change the POSE to this specifically: A gentle confused shrug, both open palms turned upward near waist height, head tilted slightly. No raised index finger. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "boy-longevity",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME boy. Change the POSE to this specifically: Standing still with both arms hanging loosely, shoulders gently lowered and head slightly lowered, looking tired. Both feet planted level. Not walking and not aged. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "boy-immune",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME boy. Change the POSE to this specifically: Standing with one hand resting on upper chest and the other on abdomen, subdued concerned posture. No crossed arms. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "girl-immune",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME girl. Change the POSE to this specifically: Standing and gently hugging herself with hands on opposite upper arms, shoulders slightly drawn inward. No hands on hips. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "boy-neuro",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME boy. Change the POSE to this specifically: Standing with both hands gently touching his temples and elbows outward, worried. No relaxed open-arm meditation pose. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "girl-neuro",
+    "method": "built-in image_gen",
+    "prompt": "Use the provided APPROVED character as the exact identity and rendering reference. Create ONE negative-state full-body sprite of the SAME girl. Change the POSE to this specifically: Standing with one hand gently touching the side of her forehead and the other resting near her upper chest, visibly anxious. Do not clasp both hands over chest. The new pose is mandatory. Keep the approved face identity: identical round puffy cheeks, head proportions, eye shape/size/spacing, hairstyle, clothing and young-child softness. Do not make an older/slimmer/different character. Keep eyes recognizable and open as in the reference. Mild worried expression, not exaggerated pain. Preserve the approved soft airy CYAN HOLOGRAPHIC SHELL with luminous rim and gently transmitted light, not opaque painted blue plastic. Full head, fingers and feet visible; front view; enough transparent margin. Transparent RGBA background, no floor or objects, no text, no red regions baked in. Exactly one character, a complete production sprite."
+  },
+  {
+    "id": "girl-longevity",
+    "method": "built-in image_gen",
+    "prompt": "Edit the reference game character. Keep this exact little girl's round cheeks, eyes, hair, blue dress and luminous cyan hologram rendering. Change her pose: standing still with both arms relaxed down at her sides, shoulders drooping, head tilted down slightly. Give her a gently tired expression with slightly lowered upper eyelids and a small closed downturned mouth. She stays the same young character, no aging. Full body, all feet visible, same clothing. Clean transparent background, no text or objects."
+  }
+]
