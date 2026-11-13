@@ -1,4 +1,5 @@
 (() => {
+const ipad=window.portfolioIPad===true;
 const data=[
 {title:'Иммерсивный интерфейс памяти',category:'product',src:'assets/dome-portfolio-smooth.mp4',href:'memory.html'},
 {title:'Редактор генетического кода ребёнка',category:'product',scene:'genome',href:'genome.html'},
@@ -9,7 +10,7 @@ const filterGroup=document.querySelector('.filters');
 const categoryLabels={all:'All',product:'Product',web:'Web',branding:'Branding'};
 const categories=['all',...new Set([...Object.keys(categoryLabels).filter(key=>key!=='all'),...data.map(p=>p.category)])];
 filterGroup.replaceChildren();categories.forEach(category=>{const b=document.createElement('button');b.type='button';b.dataset.filter=category;const label=categoryLabels[category]||category.charAt(0).toUpperCase()+category.slice(1);b.textContent=label;const count=data.filter(p=>category==='all'||p.category===category).length;const total=document.createElement('sup');total.className='filter-count';total.textContent=String(count);b.append(total);b.setAttribute('aria-label',label+': '+count);b.setAttribute('aria-pressed',String(category==='all'));filterGroup.append(b);});
-const genome=document.querySelector('.genome-preview');genome.addEventListener('load',()=>syncGenome());
+const genome=document.querySelector('.genome-preview');if(ipad)genome.src='genome-preview-ipad.html';genome.addEventListener('load',()=>syncGenome());
 function syncGenome(){const active=data[selected]?.scene==='genome';genome.classList.toggle('is-active',active);genome.contentWindow.postMessage({type:'genome-play',active:active&&!document.hidden&&!motion.matches},location.origin);}
 const festival=document.querySelector('.festival-preview');festival.addEventListener('load',()=>festival.contentWindow.postMessage({type:'festival-play',active:data[selected]?.scene==='festival'&&!document.hidden&&!motion.matches},location.origin));
 const videos=[...document.querySelectorAll('.showreel-video')],rows=[...document.querySelectorAll('.work-row')],filters=[...document.querySelectorAll('[data-filter]')],dialog=document.querySelector('#coming-soon');
@@ -40,6 +41,22 @@ function select(index){
  document.body.dataset.preview=p.scene||'';syncGenome();festival.classList.toggle('is-active',p.scene==='festival');festival.contentWindow.postMessage({type:'festival-play',active:p.scene==='festival'&&!document.hidden&&!motion.matches},location.origin);
  if(p.scene){revision++;videos.forEach(pauseLater);still.classList.remove('is-active');schedule();return;}
  if(p.image){revision++;videos.forEach(pauseLater);still.src=p.image;still.classList.add('is-active');schedule();return;}
+ if(ipad){
+  const target=videos[1-front],previous=videos[front],ticket=++revision;
+  const posters={0:'assets/dome-portfolio-clean-poster.png',2:'assets/zoo-case/video/keeper-fit-timeline-poster.png'};
+  target.oncanplay=null;target.onloadeddata=null;target.onplaying=null;
+  clearTimeout(fadeTimers.get(target));
+  target.muted=true;target.defaultMuted=true;target.playsInline=true;
+  target.poster=posters[index]||'';
+  if(target.poster){still.src=target.poster;still.classList.add('is-active');}else still.classList.remove('is-active');
+  // Make the new video visible before requesting playback: WebKit may suspend hidden media.
+  previous.classList.remove('is-active');target.classList.add('is-active');front=videos.indexOf(target);
+  target.src=p.src;
+  function play(){if(ticket===revision&&!paused&&!document.hidden&&!motion.matches)target.play().catch(()=>{});}
+  function decoded(){if(ticket!==revision)return;still.classList.remove('is-active');play();}
+  target.onloadeddata=decoded;target.oncanplay=play;target.onplaying=()=>{if(ticket===revision)still.classList.remove('is-active');};
+  target.load();play();previous.pause();schedule();return;
+ }
  const target=videos[1-front],previous=videos[front],ticket=++revision;
  target.oncanplay=null;target.src=p.src;target.load();
  function reveal(){if(ticket!==revision)return;target.oncanplay=null;clearTimeout(fadeTimers.get(target));still.classList.remove('is-active');target.classList.add('is-active');previous.classList.remove('is-active');if(!paused&&!document.hidden&&!motion.matches)target.play().catch(()=>{});else target.pause();pauseLater(previous);front=videos.indexOf(target);}
@@ -66,5 +83,10 @@ filterGroup.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.
 dialog.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 document.addEventListener('visibilitychange',()=>{syncGenome();festival.contentWindow.postMessage({type:'festival-play',active:data[selected].scene==='festival'&&!document.hidden&&!motion.matches},location.origin);videos.forEach(v=>v.pause());if(!data[selected].image&&!data[selected].scene&&!paused&&!document.hidden&&!motion.matches)videos[front].play().catch(()=>{});schedule();});
 motion.addEventListener('change',()=>{paused=motion.matches;syncGenome();festival.contentWindow.postMessage({type:'festival-play',active:data[selected].scene==='festival'&&!document.hidden&&!paused},location.origin);if(paused)videos.forEach(v=>v.pause());else if(!data[selected].image&&!data[selected].scene)videos[front].play().catch(()=>{});schedule();});
+if(ipad){
+ function resume(){if(!data[selected].scene&&!data[selected].image&&!paused&&!document.hidden&&!motion.matches)videos[front].play().catch(()=>{});syncGenome();}
+ document.addEventListener('pointerdown',resume,{passive:true});addEventListener('pageshow',resume);addEventListener('ipadviewport',resume);
+ videos.forEach(v=>{v.defaultMuted=true;v.muted=true;v.playsInline=true;});
+}
 schedule();
 })();

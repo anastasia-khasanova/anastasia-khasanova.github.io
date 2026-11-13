@@ -1,6 +1,7 @@
+const ipadMemory=window.portfolioIPad===true;
 const holder=document.querySelector('.desktop-holder');
 const canvas=document.querySelector('.desktop-canvas');
-function fit(){const scale=Math.min(1924,document.documentElement.clientWidth)/1924;holder.style.height=15020*scale+'px';const header=document.querySelector('.desktop-case-header');holder.style.marginTop=(header.getBoundingClientRect().height+40-212*scale)+'px';canvas.style.zoom=scale;canvas.style.transform='none';document.querySelectorAll('.mobile-visual').forEach(el=>{const s=el.clientWidth/Number(el.dataset.width);el.style.height=Number(el.dataset.height)*s+'px';el.firstElementChild.style.zoom=s;el.firstElementChild.style.transform='none';});}
+function fit(){const scale=Math.min(1924,document.documentElement.clientWidth)/1924;holder.style.height=15020*scale+'px';const header=document.querySelector('.desktop-case-header');holder.style.marginTop=(header.getBoundingClientRect().height+40-212*scale)+'px';canvas.style.zoom=ipadMemory?1:scale;canvas.style.transform=ipadMemory?'scale('+scale+')':'none';document.querySelectorAll('.mobile-visual').forEach(el=>{const s=el.clientWidth/Number(el.dataset.width);el.style.height=Number(el.dataset.height)*s+'px';el.firstElementChild.style.zoom=ipadMemory?1:s;el.firstElementChild.style.transform=ipadMemory?'scale('+s+')':'none';});}
 fit();new ResizeObserver(fit).observe(document.body);
 const back=document.querySelector('.back-top');window.addEventListener('scroll',()=>back.classList.toggle('visible',window.scrollY>600),{passive:true});back.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'}));
 // Related cases do not yet have URLs. Keep their preview cards actionable and explicit.
@@ -11,11 +12,13 @@ document.querySelectorAll('[data-name="Switcher-2"]').forEach(el=>{el.tabIndex=-
 
 const reducedMotion=matchMedia('(prefers-reduced-motion:reduce)');
 const mediaObserver=new IntersectionObserver(entries=>entries.forEach(({target:video,isIntersecting})=>{
- if(isIntersecting&&!reducedMotion.matches&&!video.dataset.userPaused)video.play().catch(()=>{});
+ if((ipadMemory?ipadVideoVisible(video):isIntersecting)&&!reducedMotion.matches&&!video.dataset.userPaused)video.play().catch(()=>{});
  else video.pause();
 }),{threshold:.05});
 document.querySelectorAll('.case-video').forEach(video=>{
- video.muted=true;mediaObserver.observe(video);
+ video.muted=true;
+ if(ipadMemory){video.defaultMuted=true;video.playsInline=true;if(video.dataset.media==='354:30'){video.poster='assets/ipad-memory-hero.jpg';video.src='assets/ipad-memory-hero.mp4';video.load();}}
+ mediaObserver.observe(video);
  const toggle=video.nextElementSibling;
  const mediaSection=video.closest('.design-section,.mobile-visual');
  if(mediaSection)mediaSection.appendChild(toggle);
@@ -69,3 +72,13 @@ for(const section of document.querySelectorAll('.design-section.s12,.mobile-visu
  if('IntersectionObserver' in window)new IntersectionObserver(entries=>button.classList.toggle('footer-hidden',entries[0].isIntersecting),{threshold:0}).observe(footer);
  else {const sync=()=>button.classList.toggle('footer-hidden',footer.getBoundingClientRect().top<innerHeight);addEventListener('scroll',sync,{passive:true});sync();}
 })();
+
+// iPad Safari can report stale intersection/zoom geometry after rotation or restoring a tab.
+function ipadVideoVisible(video){const r=video.getBoundingClientRect();return !document.hidden&&r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth;}
+if(ipadMemory){
+ let pending=false;
+ function resumeVisible(){pending=false;document.querySelectorAll('.case-video').forEach(v=>{if(ipadVideoVisible(v)&&!v.dataset.userPaused&&!reducedMotion.matches)v.play().catch(()=>{});else v.pause();});}
+ function queue(){if(!pending){pending=true;requestAnimationFrame(resumeVisible);}}
+ addEventListener('ipadviewport',()=>{fit();queue();});addEventListener('pageshow',queue);addEventListener('scroll',queue,{passive:true});document.addEventListener('visibilitychange',queue);document.addEventListener('pointerdown',queue,{passive:true});
+ document.querySelectorAll('.case-video').forEach(v=>v.addEventListener('canplay',queue));reducedMotion.addEventListener('change',queue);queue();
+}

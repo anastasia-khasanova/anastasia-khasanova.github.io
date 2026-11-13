@@ -1,4 +1,4 @@
-// local-source:C:\Users\Nell\Documents\Codex\2026-10-14\new-chat\outputs\portfolio-case\src\lib\custom-effects\CodeComponentId_697c539e0b0a924999ea84842d1cfd5089bec81f_acbc2759208a5cce1555d399773c48cef3383aeb.ts
+// local-source:C:\Users\Nell\Documents\Portfolio site - Khasanova Anastasia\src\lib\custom-effects\CodeComponentId_697c539e0b0a924999ea84842d1cfd5089bec81f_acbc2759208a5cce1555d399773c48cef3383aeb.ts
 function defineProperties(_component, _properties) {
 }
 function Effect() {
@@ -391,7 +391,7 @@ defineProperties(Effect, {
   }
 });
 
-// local-source:C:\Users\Nell\Documents\Codex\2026-10-14\new-chat\outputs\portfolio-case\src\year-memory-effect.js
+// local-source:C:\Users\Nell\Documents\Portfolio site - Khasanova Anastasia\src\year-memory-effect.js
 var gpu;
 async function device() {
   return gpu || (gpu = (async () => {
