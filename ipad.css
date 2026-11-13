@@ -51,3 +51,10 @@ html.is-ipad:has(.fullscreen-home),.is-ipad .fullscreen-home{width:var(--ipad-wi
 
 /* iPad v4: keep the compact mechanics/risk rhythm in normal flow. */
 @media(max-width:1100px){.is-ipad .gc-risk-scroll{margin-top:-24px!important}.is-ipad .gc-config:not([data-demo-state="category"]){height:1160px!important}}
+@media(min-width:1101px){.is-ipad .gc-risk-scroll{clip-path:inset(0)}}
+.is-ipad .fullscreen-home .work-row{grid-template-columns:minmax(0,1fr) max-content 42px;column-gap:16px}
+.is-ipad .fullscreen-home .work-category,.is-ipad .fullscreen-home .work-year{white-space:nowrap}
+.is-ipad .fullscreen-home .work-year{text-align:right}
+.is-ipad .showreel video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+
+.is-ipad .fullscreen-home .work-row{grid-template-columns:minmax(0,1fr) max-content 42px!important;column-gap:16px!important}

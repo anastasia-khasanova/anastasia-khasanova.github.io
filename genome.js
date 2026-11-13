@@ -1,7 +1,7 @@
 
 (()=>{const q=s=>document.querySelector(s);const canvas=q('.gc-canvas'),holder=q('.gc-holder');
 // Refresh embedded documents only on iPad so their old cached HTML cannot retain the WebM path.
-if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-4'+(hash?'#'+hash:'');});
+if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-5'+(hash?'#'+hash:'');});
 let ipadLayoutWidth=0,ipadLayoutHeight=0;
 function caseViewportHeight(){if(!window.portfolioIPad)return innerHeight;const width=document.documentElement.clientWidth;if(width!==ipadLayoutWidth){ipadLayoutWidth=width;ipadLayoutHeight=innerHeight;}return ipadLayoutHeight;}
 const riskMotion=matchMedia('(prefers-reduced-motion:reduce)');let riskState=null,riskRaf=0;
@@ -37,15 +37,19 @@ function fit(){if(window.portfolioIPad){canvas.style.zoom='1';canvas.style.trans
  for(const {n,y} of fixedSections){n.style.top=y+'px';const id=n.dataset.section;if(id==='761-248'||id==='761-281'){n.style.top=(id==='761-281'?configTop:3354.829834)+'px';n.style.transform='scale('+ratio+')';n.style.transformOrigin='50% 0';}else if(id==='771-2510')n.style.top=(y-delta-detailsLift)+'px';else if(y>=4945.830078)n.style.top=(y-delta-detailsLift+(y>=6635.830078?(riskExtra+riskTail)/scale:0))+'px';if(y>4945.830078)n.style.top=(parseFloat(n.style.top)+descriptionExtra)+'px';if(y>=1597.829834)n.style.top=(parseFloat(n.style.top)-introLift)+'px';if(y>=6779.830292)n.style.top=(parseFloat(n.style.top)-40)+'px';if(y>=8818.609375)n.style.top=(parseFloat(n.style.top)+180+q('[data-node-id="775:2527"]').offsetHeight-450.145)+'px';if(y>=7723.830529)n.style.top=(parseFloat(n.style.top)+(q('.gc-base-demo').offsetHeight-714))+'px';}
  holder.style.height=((10782-delta-detailsLift)*scale+riskExtra+riskTail)+'px';
  fitRiskScene(scale,delta+detailsLift+introLift-descriptionExtra,riskTravel,riskExtra);
- // iPad: remove the old desktop reserve for hidden category copy and the pinned entrance.
+ // Reserve a boundary for the entire risk scene, not only its text column.
  if(window.portfolioIPad){
   q('.gc-category-hint').style.top=(1055+40/(scale*ratio))+'px';
-  const tail=q('.gc-category-details').dataset.visible==='true'?q('.gc-category-details'):q('.gc-category-hint');
-  const trim=Math.max(0,riskCopyFlow.getBoundingClientRect().top-tail.getBoundingClientRect().bottom-64);
-  if(trim){const scene=q('.gc-risk-scroll');scene.style.top=(parseFloat(scene.style.top)-trim)+'px';riskState.top-=trim;for(const {n,y} of fixedSections)if(y>=6635.830078)n.style.top=(parseFloat(n.style.top)-trim/scale)+'px';updateRiskScene();}
+  const selected=q('.gc-category-details').dataset.visible==='true';
+  const tail=selected?q('.gc-category-details'):q('.gc-category-hint');
+  const mechanicsEnd=Math.max(q('[data-section="761-281"]').getBoundingClientRect().bottom,tail.getBoundingClientRect().bottom);
+  const scene=q('.gc-risk-scroll'),shift=mechanicsEnd+64-scene.getBoundingClientRect().top;
+  scene.style.top=(parseFloat(scene.style.top)+shift)+'px';riskState.top+=shift;
+  for(const {n,y} of fixedSections)if(y>=6635.830078)n.style.top=(parseFloat(n.style.top)+shift/scale)+'px';
+  updateRiskScene();
  }
  // End at the actual copyright row, rather than the old fixed Figma page height.
- const footerEnd=q('[data-node-id="734:4228"]').getBoundingClientRect().bottom-holder.getBoundingClientRect().top;
+ const footerEnd=q('.case-ending-anchor').getBoundingClientRect().top-holder.getBoundingClientRect().top;
  canvas.style.height=footerEnd/scale+'px';holder.style.height=(footerEnd+24)+'px';
  q('.gc-category-hint').style.top=(1055+40/(scale*ratio))+'px';
  updateGeneRail(scale);
@@ -81,10 +85,8 @@ fit();addEventListener('resize',fit,{passive:true});if(window.portfolioIPad)addE
 function followCaseAnchor(){if(['#base-range','#prototype','#mechanics','#risks','#monetization','#monetization-end'].includes(location.hash))requestAnimationFrame(()=>scrollTo({top:scrollY+q(location.hash).getBoundingClientRect().top-32,behavior:'instant'}));}addEventListener('hashchange',followCaseAnchor);addEventListener('pageshow',followCaseAnchor);followCaseAnchor();
 function clickable(id,label,action){const n=q('[data-node-id="'+id+'"]');if(!n)return;n.tabIndex=0;n.setAttribute('role','button');n.setAttribute('aria-label',label);n.addEventListener('click',action);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action();}});}
 
-const projects=q('[data-node-id="734:4192"]');
-if(!projects.classList.contains('case-related-track'))clickable('734:4224','Предыдущие проекты',()=>projects.prepend(projects.lastElementChild));if(!projects.classList.contains('case-related-track'))clickable('734:4226','Следующие проекты',()=>projects.append(projects.firstElementChild));
 const dialog=q('#gc-project-dialog');q('.gc-close').onclick=()=>dialog.close();
-const top=q('.gc-top');let footerVisible=false;function sync(){top.classList.toggle('visible',scrollY>600&&!footerVisible);}addEventListener('scroll',sync,{passive:true});new IntersectionObserver(entries=>{footerVisible=entries[0].isIntersecting;sync();}).observe(q('[data-node-id="734:4215"]'));top.onclick=()=>scrollTo({top:0,behavior:'smooth'});sync();
+const top=q('.gc-top');let footerVisible=false;function sync(){top.classList.toggle('visible',scrollY>600&&!footerVisible);}addEventListener('scroll',sync,{passive:true});new IntersectionObserver(entries=>{footerVisible=entries[0].isIntersecting;sync();}).observe(q('.shared-case-ending .case-footer'));top.onclick=()=>scrollTo({top:0,behavior:'smooth'});sync();
 // The overview has its own positive illustrations; the full prototype retains risk states.
 const categoryNames={intelligence:'Интеллект',longevity:'Долголетие',appearance:'Внешность',strength:'Телосложение',immune:'Иммунитет',neuro:'Психика'};
 function keepShortWords(text){return text.replace(/(?<![\p{L}\p{N}_])((?:без|в|во|для|до|за|из|из-за|из-под|к|ко|между|на|над|о|об|обо|от|перед|по|под|при|про|ради|с|со|у|через|и|а|но|или|не|ни))[ \t]+(?=\S)/giu,'$1\u00a0');}
