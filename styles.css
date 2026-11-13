@@ -612,7 +612,7 @@
 .source-memory-nav [data-node-id="I531:8548;635:11367"]{left:108.5px;top:0;flex-direction:column-reverse}
 .source-memory-nav [data-node-id="I531:8548;635:11371"]>div{transform:none}
 .source-memory-nav [data-node-id="I531:8548;635:11369"]>div>div{border:1px solid #ffffff25;backdrop-filter:blur(3.5px);background:linear-gradient(135deg,#ffffff18,#ffffff05)}
-.design-section.s7{overflow:hidden}
+.design-section.s7{overflow:clip}
 @media(max-width:1024px){.mobile-demo-visual .source-memory-shell .source-memory-nav{top:1270px}}
 
 /* Preserve the exported connection contours and their original radial fills. */
