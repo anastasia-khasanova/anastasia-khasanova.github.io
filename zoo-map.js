@@ -78,7 +78,7 @@ function select(number,announce=true){
 function width(){return root.clientWidth;}
 function visibleWidth(){return Math.min(width(),970);}
 function clamp(){x=Math.min(visibleWidth()/2,Math.max(visibleWidth()/2-2185.059*zoom,x));y=Math.min(root.clientHeight/2,Math.max(root.clientHeight/2-1849.346*zoom,y));}
-function draw(){clamp();world.style.zoom=window.portfolioIPad?'1':String(zoom);world.style.transform=window.portfolioIPad?`translate(${x}px,${y}px) scale(${zoom})`:`translate(${x/zoom}px,${y/zoom}px)`;root.dataset.mapZoom=zoom.toFixed(2);root.dataset.mapX=x.toFixed(2);root.dataset.mapY=y.toFixed(2);minus.disabled=zoom<=.55;plus.disabled=zoom>=2.4;mapMarkers.render();}
+function draw(){clamp();world.style.zoom=window.portfolioIPad?'1':String(zoom);world.style.transform=window.portfolioIPad?`translate3d(${x}px,${y}px,0) scale(${zoom})`:`translate(${x/zoom}px,${y/zoom}px)`;root.dataset.mapZoom=zoom.toFixed(2);root.dataset.mapX=x.toFixed(2);root.dataset.mapY=y.toFixed(2);minus.disabled=zoom<=.55;plus.disabled=zoom>=2.4;mapMarkers.render();}
 function zoomTo(value){const z=Math.min(2.4,Math.max(.55,value)),cx=visibleWidth()/2,cy=root.clientHeight/2;x=cx-(cx-x)*z/zoom;y=cy-(cy-y)*z/zoom;zoom=z;draw();}
 const controls=document.createElement('div');controls.className='zc-map-controls';controls.setAttribute('aria-label','Управление картой');
 function button(label,text,fn){const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',label);b.title=label;b.textContent=text;b.addEventListener('click',fn);controls.append(b);return b;}
@@ -132,7 +132,8 @@ function createMapMarkers(){
   el.addEventListener('click',()=>{x=visibleWidth()/2-target.x*zoom;y=root.clientHeight/2-target.y*zoom;select(number);draw();});layer.append(el);
   return {number,target,el,icon:node(enclosure.label)?.querySelector('img'),angle:0};
  });
- let elapsed=0,previous=0,frame=0,inView=false;
+ let elapsed=0,previous=0,frame=0,inView=false,viewportRect=null;
+ const invalidateGeometry=()=>{viewportRect=null;};root.addEventListener('pointerdown',invalidateGeometry,{passive:true});window.addEventListener('zoo:responsive',invalidateGeometry);window.addEventListener('resize',invalidateGeometry,{passive:true});window.addEventListener('scroll',invalidateGeometry,{passive:true});
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
  function staff(){
   for(const person of people){let point=person.position;
@@ -142,7 +143,7 @@ function createMapMarkers(){
   }
  }
  function urgent(){
-  const r=root.getBoundingClientRect(),scale=r.width/root.clientWidth,h=root.clientHeight;
+  const fastGeometry=window.portfolioIPad||matchMedia('(pointer:coarse)').matches,r=fastGeometry?(viewportRect||(viewportRect=root.getBoundingClientRect())):root.getBoundingClientRect(),scale=r.width/root.clientWidth,h=root.clientHeight;
   let top=Math.max(0,-r.top/scale),bottom=Math.min(h,(window.innerHeight-r.top)/scale);
   if(bottom-top<120){top=0;bottom=h;}
   const bounds={left:40,right:visibleWidth()-40,top:top+40,bottom:bottom-40};
