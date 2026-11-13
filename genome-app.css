@@ -365,3 +365,5 @@ html.genome-base-study,html.genome-base-study body{background:#000;overflow:hidd
 /* Keep native iframe layout intact on iPad; WebKit zoom can paint only a subrectangle. */
 html.is-ipad{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(min-width:1101px){.is-ipad .tablet-stage{zoom:1;transform:scale(var(--tablet-scale,1));transform-origin:center}}
+
+@media(prefers-reduced-motion:reduce){.ipad-welcome-animation{display:none!important}.is-ipad .avatar-scene>.reduced-poster{display:block!important}}

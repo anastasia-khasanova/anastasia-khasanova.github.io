@@ -1,7 +1,9 @@
 
 (()=>{const q=s=>document.querySelector(s);const canvas=q('.gc-canvas'),holder=q('.gc-holder');
 // Refresh embedded documents only on iPad so their old cached HTML cannot retain the WebM path.
-if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-3'+(hash?'#'+hash:'');});
+if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-4'+(hash?'#'+hash:'');});
+let ipadLayoutWidth=0,ipadLayoutHeight=0;
+function caseViewportHeight(){if(!window.portfolioIPad)return innerHeight;const width=document.documentElement.clientWidth;if(width!==ipadLayoutWidth){ipadLayoutWidth=width;ipadLayoutHeight=innerHeight;}return ipadLayoutHeight;}
 const riskMotion=matchMedia('(prefers-reduced-motion:reduce)');let riskState=null,riskRaf=0;
 // Keep the introduction above the pinned tablet without fading it.
 const riskCopyFlow=document.createElement('div');riskCopyFlow.className='gc-risk-copy-flow';q('.gc-risk-scroll').append(riskCopyFlow);riskCopyFlow.append(q('[data-node-id="770:2479"]'));
@@ -22,19 +24,26 @@ function restoreCaseMedia(){for(const {node,slot} of flowMedia)if(slot.nextSibli
 function fit(){if(window.portfolioIPad){canvas.style.zoom='1';canvas.style.transform=compactCase.matches?'none':'scale('+Math.min(1924,document.documentElement.clientWidth)/1924+')';canvas.style.transformOrigin='0 0';}if(compactCase.matches){fitCompactCase();return;}restoreCaseMedia();const scale=Math.min(1924,document.documentElement.clientWidth)/1924;document.documentElement.style.setProperty('--case-scale',scale);
  const intro=q('[data-node-id="761:250"]'),introHeight=intro.offsetTop+intro.offsetHeight;
  const mechanicsHeight=introHeight+1214.721;
- const ratio=Math.min(1,Math.max(200,innerHeight-144)/(mechanicsHeight*scale)),delta=1510.721-(mechanicsHeight*ratio+80/scale);
+ const ratio=Math.min(1,Math.max(200,caseViewportHeight()-144)/(mechanicsHeight*scale)),delta=1510.721-(mechanicsHeight*ratio+80/scale);
  const configTop=3354.829834+introHeight*ratio+80/scale;
  const descriptionGap=Math.max(20,40*scale);
  const detailsTop=configTop+1055*ratio+descriptionGap/scale,detailsLift=(4945.830078-delta)-detailsTop;
  const descriptionExtra=Math.max(0,q('.gc-category-details').scrollHeight-233);
- const riskTravel=riskMotion.matches?0:Math.max(480,innerHeight*.9),riskExtra=Math.max(0,innerHeight+riskTravel-1297*scale);
- const riskNativeHeight=riskSceneHeight(),riskScale=Math.min(scale,Math.max(100,innerHeight-64)/riskNativeHeight);
- const riskEndY=Math.max(32,(innerHeight-riskNativeHeight*riskScale)/2);
+ const riskTravel=riskMotion.matches?0:Math.max(480,caseViewportHeight()*.9),riskExtra=Math.max(0,caseViewportHeight()+riskTravel-1297*scale);
+ const riskNativeHeight=riskSceneHeight(),riskScale=Math.min(scale,Math.max(100,caseViewportHeight()-64)/riskNativeHeight);
+ const riskEndY=Math.max(32,(caseViewportHeight()-riskNativeHeight*riskScale)/2);
  const captionEnd=(riskMotion.matches?1371:991)+q('[data-node-id="771:2502"]').offsetHeight;
- const riskTail=240-(innerHeight-riskEndY-captionEnd*riskScale);
+ const riskTail=240-(caseViewportHeight()-riskEndY-captionEnd*riskScale);
  for(const {n,y} of fixedSections){n.style.top=y+'px';const id=n.dataset.section;if(id==='761-248'||id==='761-281'){n.style.top=(id==='761-281'?configTop:3354.829834)+'px';n.style.transform='scale('+ratio+')';n.style.transformOrigin='50% 0';}else if(id==='771-2510')n.style.top=(y-delta-detailsLift)+'px';else if(y>=4945.830078)n.style.top=(y-delta-detailsLift+(y>=6635.830078?(riskExtra+riskTail)/scale:0))+'px';if(y>4945.830078)n.style.top=(parseFloat(n.style.top)+descriptionExtra)+'px';if(y>=1597.829834)n.style.top=(parseFloat(n.style.top)-introLift)+'px';if(y>=6779.830292)n.style.top=(parseFloat(n.style.top)-40)+'px';if(y>=8818.609375)n.style.top=(parseFloat(n.style.top)+180+q('[data-node-id="775:2527"]').offsetHeight-450.145)+'px';if(y>=7723.830529)n.style.top=(parseFloat(n.style.top)+(q('.gc-base-demo').offsetHeight-714))+'px';}
  holder.style.height=((10782-delta-detailsLift)*scale+riskExtra+riskTail)+'px';
  fitRiskScene(scale,delta+detailsLift+introLift-descriptionExtra,riskTravel,riskExtra);
+ // iPad: remove the old desktop reserve for hidden category copy and the pinned entrance.
+ if(window.portfolioIPad){
+  q('.gc-category-hint').style.top=(1055+40/(scale*ratio))+'px';
+  const tail=q('.gc-category-details').dataset.visible==='true'?q('.gc-category-details'):q('.gc-category-hint');
+  const trim=Math.max(0,riskCopyFlow.getBoundingClientRect().top-tail.getBoundingClientRect().bottom-64);
+  if(trim){const scene=q('.gc-risk-scroll');scene.style.top=(parseFloat(scene.style.top)-trim)+'px';riskState.top-=trim;for(const {n,y} of fixedSections)if(y>=6635.830078)n.style.top=(parseFloat(n.style.top)-trim/scale)+'px';updateRiskScene();}
+ }
  // End at the actual copyright row, rather than the old fixed Figma page height.
  const footerEnd=q('[data-node-id="734:4228"]').getBoundingClientRect().bottom-holder.getBoundingClientRect().top;
  canvas.style.height=footerEnd/scale+'px';holder.style.height=(footerEnd+24)+'px';
@@ -44,9 +53,9 @@ function fit(){if(window.portfolioIPad){canvas.style.zoom='1';canvas.style.trans
 function fitRiskScene(caseScale,lift,travel,extra){
  const scene=q('.gc-risk-scroll'),stage=q('.gc-risk-stage'),nativeHeight=riskSceneHeight();
  const top=holder.getBoundingClientRect().top+scrollY+(5338.830078-lift)*caseScale;
- const scale=Math.min(caseScale,Math.max(100,innerHeight-64)/nativeHeight);
+ const scale=Math.min(caseScale,Math.max(100,caseViewportHeight()-64)/nativeHeight);
  scene.style.top=top+'px';scene.style.height=(1297*caseScale+extra)+'px';
- const left=(document.documentElement.clientWidth-1924*scale)/2,stageY=Math.max(32,(innerHeight-nativeHeight*scale)/2);
+ const left=(document.documentElement.clientWidth-1924*scale)/2,stageY=Math.max(32,(caseViewportHeight()-nativeHeight*scale)/2);
  stage.style.left=left+'px';stage.style.transform='scale('+scale+')';stage.style.top=stageY+'px';
  riskCopyFlow.style.left=left+'px';riskCopyFlow.style.top=(stageY+(riskMotion.matches?0:327*scale))+'px';riskCopyFlow.style.transform='scale('+scale+')';
  riskState={top,travel,scale};updateRiskScene();
@@ -56,9 +65,9 @@ function updateRiskScene(){
  const progress=travel?clamp((scrollY-top)/travel):1,move=smooth((progress-.4)/.55),reveal=smooth((progress-.48)/.42);
  const stage=q('.gc-risk-stage'),tablet=q('[data-node-id="768:1829"]'),copy=q('[data-node-id="770:2479"]'),caption=q('[data-node-id="771:2502"]');
  q('.gc-risk-scroll').dataset.progress=progress.toFixed(4);
- if(riskMotion.matches){stage.style.top=Math.max(32,(innerHeight-riskSceneHeight()*scale)/2)+'px';tablet.style.transform='translate(-709.8489px,380px)';copy.style.left='617.5px';copy.style.top='0px';copy.style.transform='none';copy.style.opacity='1';caption.style.transform='translate(-709.5px,380px)';caption.style.opacity='1';caption.removeAttribute('aria-hidden');return;}
+ if(riskMotion.matches){stage.style.top=Math.max(32,(caseViewportHeight()-riskSceneHeight()*scale)/2)+'px';tablet.style.transform='translate(-709.8489px,380px)';copy.style.left='617.5px';copy.style.top='0px';copy.style.transform='none';copy.style.opacity='1';caption.style.transform='translate(-709.5px,380px)';caption.style.opacity='1';caption.removeAttribute('aria-hidden');return;}
  // The sticky tablet keeps a constant vertical coordinate; only its X position changes.
- stage.style.top=Math.max(32,(innerHeight-riskSceneHeight()*scale)/2)+'px';
+ stage.style.top=Math.max(32,(caseViewportHeight()-riskSceneHeight()*scale)/2)+'px';
  tablet.style.transform='translateX('+(-709.8489*move)+'px)';
  copy.style.left='234px';copy.style.top='0px';copy.style.transform='none';copy.style.opacity='1';
  caption.style.transform='translateX('+(-709.5*move)+'px)';caption.style.opacity=String(reveal);caption.setAttribute('aria-hidden',String(reveal===0));
@@ -66,14 +75,14 @@ function updateRiskScene(){
 function queueRiskScene(){if(!riskRaf)riskRaf=requestAnimationFrame(()=>{riskRaf=0;updateRiskScene();});}
 addEventListener('scroll',queueRiskScene,{passive:true});riskMotion.addEventListener('change',()=>fit());
 function updateGeneRail(scale){const rail=q('.gc-gene-rail'),start=q('[data-section="776-2569"]').getBoundingClientRect(),end=q('[data-section="775-2527"]').getBoundingClientRect();
- rail.style.top=(scrollY+start.top-14*scale)+'px';rail.style.height=(end.bottom-start.top+14*scale)+'px';rail.style.width=Math.max(0,start.left-60*scale)+'px';rail.style.setProperty('--gene-scale',Math.min(scale,Math.max(1,innerHeight-96)/798));
+ rail.style.top=(scrollY+start.top-14*scale)+'px';rail.style.height=(end.bottom-start.top+14*scale)+'px';rail.style.width=Math.max(0,start.left-60*scale)+'px';rail.style.setProperty('--gene-scale',Math.min(scale,Math.max(1,caseViewportHeight()-96)/798));
 }
 fit();addEventListener('resize',fit,{passive:true});if(window.portfolioIPad)addEventListener('ipadviewport',fit);document.fonts?.ready.then(fit);
 function followCaseAnchor(){if(['#base-range','#prototype','#mechanics','#risks','#monetization','#monetization-end'].includes(location.hash))requestAnimationFrame(()=>scrollTo({top:scrollY+q(location.hash).getBoundingClientRect().top-32,behavior:'instant'}));}addEventListener('hashchange',followCaseAnchor);addEventListener('pageshow',followCaseAnchor);followCaseAnchor();
 function clickable(id,label,action){const n=q('[data-node-id="'+id+'"]');if(!n)return;n.tabIndex=0;n.setAttribute('role','button');n.setAttribute('aria-label',label);n.addEventListener('click',action);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action();}});}
 
 const projects=q('[data-node-id="734:4192"]');
-clickable('734:4224','Предыдущие проекты',()=>projects.prepend(projects.lastElementChild));clickable('734:4226','Следующие проекты',()=>projects.append(projects.firstElementChild));
+if(!projects.classList.contains('case-related-track'))clickable('734:4224','Предыдущие проекты',()=>projects.prepend(projects.lastElementChild));if(!projects.classList.contains('case-related-track'))clickable('734:4226','Следующие проекты',()=>projects.append(projects.firstElementChild));
 const dialog=q('#gc-project-dialog');q('.gc-close').onclick=()=>dialog.close();
 const top=q('.gc-top');let footerVisible=false;function sync(){top.classList.toggle('visible',scrollY>600&&!footerVisible);}addEventListener('scroll',sync,{passive:true});new IntersectionObserver(entries=>{footerVisible=entries[0].isIntersecting;sync();}).observe(q('[data-node-id="734:4215"]'));top.onclick=()=>scrollTo({top:0,behavior:'smooth'});sync();
 // The overview has its own positive illustrations; the full prototype retains risk states.

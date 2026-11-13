@@ -161,5 +161,5 @@ for(const el of document.querySelectorAll('[data-name="Подпись объек
 const notes=node('930:7805');if(notes){for(const parent of notes.querySelectorAll('[data-name="Миниатюра фото заметки"]')){const img=parent.querySelector('img');if(img)control(parent,'Открыть фото из заметки',()=>open('<img src="'+img.getAttribute('src')+'" alt="Фото из заметки смотрителя">'));}}
 control(node('930:7999'),'Связаться по электронной почте',()=>{location.href='mailto:nelldubrovina@yandex.ru';});
 const gallery=node('930:7970');
-control(node('930:8002'),'Предыдущие проекты',()=>{if(gallery)gallery.prepend(gallery.lastElementChild);});control(node('930:8004'),'Следующие проекты',()=>{if(gallery)gallery.append(gallery.firstElementChild);});
+if(!gallery.classList.contains('case-related-track'))control(node('930:8002'),'Предыдущие проекты',()=>{if(gallery)gallery.prepend(gallery.lastElementChild);});if(!gallery.classList.contains('case-related-track'))control(node('930:8004'),'Следующие проекты',()=>{if(gallery)gallery.append(gallery.firstElementChild);});
 })();

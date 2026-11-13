@@ -1012,6 +1012,8 @@ dialog{background:#111;color:#f5f5f7;border:1px solid #ffffff30;border-radius:16
 /* Fade the decorative curve behind the hand before its flat trailing section. */
 [data-node-id="930:8009"]{mask-image:linear-gradient(to right,#000 0%,#000 48%,transparent 64%);-webkit-mask-image:linear-gradient(to right,#000 0%,#000 48%,transparent 64%)}
 
+.zc-touch-pan,.zc-touch-pan *{touch-action:none!important}.zc-touch-pan .zc-map-world,.zc-preview-map-pan>div{will-change:transform}
+
 /* Figma Heading/H2-Medium */
 [data-node-id="I898:9938;232:2226"],[data-node-id="I898:9938;232:2226"]>p,[data-hero-node-id="I898:9938;232:2226"],[data-hero-node-id="I898:9938;232:2226"]>p{font-family:"Ubuntu",sans-serif;font-style:normal;font-weight:400;font-size:24px;line-height:1;letter-spacing:-0.48px;font-synthesis:none;text-rendering:geometricPrecision;}
 /* Figma Body/B1-Regular */

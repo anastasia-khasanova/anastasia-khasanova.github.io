@@ -1,2 +1,23 @@
-.case-cover{position:relative;display:block;width:100%;height:100%;overflow:hidden;background:#050505}.case-cover video,.case-cover iframe{display:block;width:100%;height:100%;object-fit:cover;border:0;pointer-events:none}.case-cover iframe{position:absolute;inset:0}
-.case-cover::after{content:"";position:absolute;inset:0;background:#000;opacity:.5;transition:opacity .45s ease;pointer-events:none}.case-cover.is-active::after{opacity:0}@media(prefers-reduced-motion:reduce){.case-cover::after{transition:none}}
+/* One gallery component, including a real image under every media element. */
+.case-cover{position:relative;display:block;width:100%;height:100%;overflow:hidden;background:#050505}
+.case-cover .case-cover-poster,.case-cover video,.case-cover iframe{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;border:0;pointer-events:none}
+.case-cover[data-scene="genome"] .case-cover-poster{object-fit:contain}
+.case-cover video,.case-cover iframe{opacity:0;transition:opacity .25s}
+.case-cover.is-playing video,.case-cover.is-active.is-ready iframe{opacity:1}
+.case-cover::after{content:"";position:absolute;inset:0;background:#000;opacity:.35;transition:opacity .25s;pointer-events:none}
+.case-cover.is-active::after{opacity:0}
+.case-related-track{--related-ui-scale:1;--related-gap:calc(16px / var(--related-ui-scale));display:flex!important;align-items:stretch!important;gap:var(--related-gap)!important;width:100%!important;height:auto!important;min-height:0!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;padding:0!important}
+.case-related-track::-webkit-scrollbar{display:none}
+.case-related-track>.case-related-card{position:relative!important;display:grid!important;grid-template-rows:auto 1fr!important;flex:0 0 calc((100% - 2 * var(--related-gap))/3)!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;overflow:hidden!important;border:1px solid #ffffff18!important;border-radius:0!important;scroll-snap-align:start;background:#050505!important;color:#fff;text-decoration:none;padding:0!important;transform:none!important}
+.case-related-track>.case-related-card>.case-cover{height:auto!important;aspect-ratio:16/9!important;min-width:0}
+.case-related-track>.case-related-card>h3{position:static!important;display:flex!important;align-items:start;justify-content:space-between;gap:calc(12px / var(--related-ui-scale));width:auto!important;height:auto!important;min-height:calc(44px / var(--related-ui-scale));clip-path:none!important;overflow:visible!important;inset:auto!important;margin:0!important;padding:calc(12px / var(--related-ui-scale)) calc(12px / var(--related-ui-scale))!important;font:400 calc(13px / var(--related-ui-scale))/1.4 Onest,Arial,sans-serif!important;letter-spacing:0!important;text-transform:uppercase;background:none!important;color:#fff!important}
+.case-related-track>.case-related-card>h3::after{content:none!important}
+.case-related-track .case-cover-year{font:inherit!important;color:#ffffff80!important;flex:none}
+.case-related-card:focus-visible{outline:2px solid #0059ff;outline-offset:-2px}
+@media(max-width:900px){.case-related-track>.case-related-card{flex-basis:calc((100% - var(--related-gap))/2.2)!important}}
+@media(max-width:700px){.case-related-track>.case-related-card{flex-basis:82%!important}}
+@media(prefers-reduced-motion:reduce){.case-cover video,.case-cover iframe,.case-cover::after{transition:none}}
+
+.case-related-heading{height:auto!important;min-height:calc(56px / var(--related-ui-scale,1))!important;margin:0!important;padding:0!important;display:flex!important;align-items:center!important}
+.case-related-heading :is(p,h2){font:400 calc(18px / var(--related-ui-scale,1))/1.4 Onest,Arial,sans-serif!important;letter-spacing:0!important;text-transform:uppercase;margin:0!important}
+.case-related-heading{justify-content:flex-start!important;text-align:left!important}.case-related-heading :is(p,h2){text-align:left!important}

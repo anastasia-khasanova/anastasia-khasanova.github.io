@@ -86,7 +86,7 @@ const plus=button('Приблизить карту','+',()=>zoomTo(zoom+.2));
 const minus=button('Отдалить карту','−',()=>zoomTo(zoom-.2));
 const locate=button('Моё местоположение','',()=>{zoom=1;x=visibleWidth()/2-299.11;y=root.clientHeight/2-1044.81;draw();});
 const locationIcon=document.createElement('img');locationIcon.src='assets/zoo-case/figma/0c1ce.svg';locationIcon.alt='';locate.append(locationIcon);root.append(controls);
-root.addEventListener('pointerdown',ev=>{lastDragged=false;if(ev.button!==0||ev.target.closest('.zc-map-controls,.zc-live-urgent'))return;const r=root.getBoundingClientRect();gesture={id:ev.pointerId,startX:ev.clientX,startY:ev.clientY,x,y,scale:r.width/root.clientWidth,moved:false};});
+root.addEventListener('pointerdown',ev=>{lastDragged=false;if(window.PortfolioTouchPan?.handles(ev))return;if(ev.button!==0||ev.target.closest('.zc-map-controls,.zc-live-urgent'))return;const r=root.getBoundingClientRect();gesture={id:ev.pointerId,startX:ev.clientX,startY:ev.clientY,x,y,scale:r.width/root.clientWidth,moved:false};});
 root.addEventListener('pointermove',ev=>{if(!gesture||gesture.id!==ev.pointerId)return;const dx=ev.clientX-gesture.startX,dy=ev.clientY-gesture.startY;if(!gesture.moved&&Math.hypot(dx,dy)>5){gesture.moved=true;root.setPointerCapture(ev.pointerId);root.classList.add('is-dragging');}if(gesture.moved){ev.preventDefault();x=gesture.x+dx/gesture.scale;y=gesture.y+dy/gesture.scale;if(window.portfolioIPad)queueMapDraw();else draw();}});
 let mapDrawFrame=0;function queueMapDraw(){if(!mapDrawFrame)mapDrawFrame=requestAnimationFrame(()=>{mapDrawFrame=0;draw();});}
 function release(){if(!gesture)return;if(window.portfolioIPad){cancelAnimationFrame(mapDrawFrame);mapDrawFrame=0;draw();}lastDragged=gesture.moved;gesture=null;root.classList.remove('is-dragging');}
@@ -95,6 +95,7 @@ root.addEventListener('click',ev=>{if(lastDragged){ev.stopPropagation();ev.preve
 root.addEventListener('keydown',ev=>{if(ev.target!==root)return;const moves={ArrowLeft:[100,0],ArrowRight:[-100,0],ArrowUp:[0,100],ArrowDown:[0,-100]};if(moves[ev.key]){ev.preventDefault();x+=moves[ev.key][0];y+=moves[ev.key][1];draw();}else if(ev.key==='+'||ev.key==='='){ev.preventDefault();zoomTo(zoom+.2);}else if(ev.key==='-'){ev.preventDefault();zoomTo(zoom-.2);}else if(ev.key==='Home'){ev.preventDefault();locate.click();}});
 root.addEventListener('focusin',ev=>{const label=ev.target.closest('.zc-map-label');if(!label||!label.matches(':focus-visible')||gesture)return;const r=root.getBoundingClientRect(),b=label.getBoundingClientRect(),scale=r.width/root.clientWidth,cx=(b.x+b.width/2-r.x)/scale,cy=(b.y+b.height/2-r.y)/scale;if(cx<60||cx>visibleWidth()-60||cy<60||cy>root.clientHeight-60){x+=visibleWidth()/2-cx;y+=root.clientHeight/2-cy;draw();}});
 const mapMarkers=createMapMarkers();
+window.PortfolioTouchPan?.attach(root,{get:()=>({x,y}),set:state=>{x=state.x;y=state.y;},draw,exclude:'.zc-map-controls,.zc-live-urgent',finish:moved=>{lastDragged=moved;}});
 function fitMapView(){if(document.documentElement.classList.contains('zoo-mobile')){x=-79;y=-649.346;zoom=1;}else{x=111;y=-832.996;zoom=1;}draw();}
 select(15,false);fitMapView();window.addEventListener('zoo:responsive',fitMapView);
 
@@ -146,7 +147,7 @@ function createMapMarkers(){
   if(bottom-top<120){top=0;bottom=h;}
   const bounds={left:40,right:visibleWidth()-40,top:top+40,bottom:bottom-40};
   const limit=(v,a,b)=>Math.max(a,Math.min(b,v));
-  const projected=alerts.map(a=>{const icon=a.icon?.getBoundingClientRect();let lift=22;if(icon&&icon.width){a.target.x=((icon.left+icon.width/2-r.left)/scale-x)/zoom;a.target.y=((icon.top+icon.height/2-r.top)/scale-y)/zoom;lift=icon.height/(2*scale)+28;}const tx=x+a.target.x*zoom,ty=y+a.target.y*zoom,px=limit(tx,bounds.left,bounds.right),py=limit(ty-lift,bounds.top,bounds.bottom);return {a,tx,ty,px,py,edge:px!==tx||py!==ty-lift};}).sort((a,b)=>Number(a.edge)-Number(b.edge));
+  const projected=alerts.map(a=>{const fast=window.portfolioIPad||matchMedia('(pointer:coarse)').matches,icon=!fast||!a.anchor?a.icon?.getBoundingClientRect():null;let lift=a.anchor?a.anchor.lift*zoom+28:22;if(icon&&icon.width){a.target.x=((icon.left+icon.width/2-r.left)/scale-x)/zoom;a.target.y=((icon.top+icon.height/2-r.top)/scale-y)/zoom;lift=icon.height/(2*scale)+28;if(fast)a.anchor={lift:(lift-28)/zoom};}const tx=x+a.target.x*zoom,ty=y+a.target.y*zoom,px=limit(tx,bounds.left,bounds.right),py=limit(ty-lift,bounds.top,bounds.bottom);return {a,tx,ty,px,py,edge:px!==tx||py!==ty-lift};}).sort((a,b)=>Number(a.edge)-Number(b.edge));
   const placed=[];
   const free=(px,py)=>!(px<104&&Math.abs(py-h/2)<110)&&placed.every(p=>Math.hypot(p.x-px,p.y-py)>55);
   for(const p of projected){let px=p.px,py=p.py;

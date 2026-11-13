@@ -48,3 +48,6 @@ html.is-ipad:has(.fullscreen-home){width:100%;max-width:none}
 html.is-ipad{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html.is-ipad:has(.fullscreen-home),.is-ipad .fullscreen-home{width:var(--ipad-width,100dvw);max-width:none}
 .is-ipad .showreel{width:var(--ipad-width,100dvw);height:var(--ipad-height,100dvh)}
+
+/* iPad v4: keep the compact mechanics/risk rhythm in normal flow. */
+@media(max-width:1100px){.is-ipad .gc-risk-scroll{margin-top:-24px!important}.is-ipad .gc-config:not([data-demo-state="category"]){height:1160px!important}}
