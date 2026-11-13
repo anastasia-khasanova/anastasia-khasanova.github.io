@@ -33,6 +33,36 @@ const animatedSections=new IntersectionObserver(entries=>entries.forEach(({targe
 }),{threshold:.05});
 document.querySelectorAll('.design-section,.mobile-visual').forEach(section=>animatedSections.observe(section));
 
+// SVG attribute morph for phone/iPad, driven by the same clock used by the scrubber.
+(() => {
+ const data=document.querySelector('#timeline-line-data');if(!data)return;
+ const number=/-?\d*\.?\d+(?:e[-+]?\d+)?/gi;
+ const keys=JSON.parse(data.textContent).map(k=>({...k,values:k.d.match(number).map(Number)}));
+ if(!keys.length)return;
+ keys.push({...keys[0],time:100});
+ const parts=keys[0].d.split(number);
+ const narrow=matchMedia('(max-width:1024px)');
+ for(const path of document.querySelectorAll('.line-stack [data-node-id="385:5877"]')){
+  const section=path.closest('.design-section,.mobile-visual');
+  let raf=0;
+  function render(){
+   raf=0;
+   if(!(ipadMemory||narrow.matches)||document.hidden||!section.classList.contains('is-in-view')||reducedMotion.matches)return;
+   const clock=path.getAnimations().find(a=>a.animationName==='timeline-line-clock');
+   if(clock){
+    const time=((Number(clock.currentTime)||0)%30000)/300;path.dataset.timelineTime=String(time);
+    let i=0;while(i<keys.length-2&&keys[i+1].time<=time)i++;
+    const a=keys[i],b=keys[i+1],f=Math.max(0,Math.min(1,(time-a.time)/(b.time-a.time||1)));
+    path.setAttribute('d',parts.map((part,j)=>j<a.values.length?part+(a.values[j]+(b.values[j]-a.values[j])*f).toFixed(3):part).join(''));
+   }
+   raf=requestAnimationFrame(render);
+  }
+  function wake(){if(!raf)render();}
+  new MutationObserver(wake).observe(section,{attributes:true,attributeFilter:['class']});
+  document.addEventListener('visibilitychange',wake);narrow.addEventListener('change',wake);reducedMotion.addEventListener('change',wake);wake();
+ }
+})();
+
 // Scrub the complete native timeline with its circular handle, then resume it.
 for(const section of document.querySelectorAll('.design-section.s12,.mobile-visual:has([data-node-id="385:7286"])')){
  const circle=section.querySelector('[data-node-id="385:7286"]');if(!circle)continue;
