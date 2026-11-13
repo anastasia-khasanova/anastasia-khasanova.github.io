@@ -1,7 +1,7 @@
 
 (()=>{const q=s=>document.querySelector(s);const canvas=q('.gc-canvas'),holder=q('.gc-holder');
 // Refresh embedded documents only on iPad so their old cached HTML cannot retain the WebM path.
-if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-2'+(hash?'#'+hash:'');});
+if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-3'+(hash?'#'+hash:'');});
 const riskMotion=matchMedia('(prefers-reduced-motion:reduce)');let riskState=null,riskRaf=0;
 // Keep the introduction above the pinned tablet without fading it.
 const riskCopyFlow=document.createElement('div');riskCopyFlow.className='gc-risk-copy-flow';q('.gc-risk-scroll').append(riskCopyFlow);riskCopyFlow.append(q('[data-node-id="770:2479"]'));
@@ -19,7 +19,7 @@ function fitCompactCase(){
  riskState=null;
 }
 function restoreCaseMedia(){for(const {node,slot} of flowMedia)if(slot.nextSibling!==node)slot.after(node);q('.gc-config').style.zoom='';}
-function fit(){if(compactCase.matches){fitCompactCase();return;}restoreCaseMedia();const scale=Math.min(1924,document.documentElement.clientWidth)/1924;document.documentElement.style.setProperty('--case-scale',scale);
+function fit(){if(window.portfolioIPad){canvas.style.zoom='1';canvas.style.transform=compactCase.matches?'none':'scale('+Math.min(1924,document.documentElement.clientWidth)/1924+')';canvas.style.transformOrigin='0 0';}if(compactCase.matches){fitCompactCase();return;}restoreCaseMedia();const scale=Math.min(1924,document.documentElement.clientWidth)/1924;document.documentElement.style.setProperty('--case-scale',scale);
  const intro=q('[data-node-id="761:250"]'),introHeight=intro.offsetTop+intro.offsetHeight;
  const mechanicsHeight=introHeight+1214.721;
  const ratio=Math.min(1,Math.max(200,innerHeight-144)/(mechanicsHeight*scale)),delta=1510.721-(mechanicsHeight*ratio+80/scale);
@@ -68,7 +68,7 @@ addEventListener('scroll',queueRiskScene,{passive:true});riskMotion.addEventList
 function updateGeneRail(scale){const rail=q('.gc-gene-rail'),start=q('[data-section="776-2569"]').getBoundingClientRect(),end=q('[data-section="775-2527"]').getBoundingClientRect();
  rail.style.top=(scrollY+start.top-14*scale)+'px';rail.style.height=(end.bottom-start.top+14*scale)+'px';rail.style.width=Math.max(0,start.left-60*scale)+'px';rail.style.setProperty('--gene-scale',Math.min(scale,Math.max(1,innerHeight-96)/798));
 }
-fit();addEventListener('resize',fit,{passive:true});document.fonts?.ready.then(fit);
+fit();addEventListener('resize',fit,{passive:true});if(window.portfolioIPad)addEventListener('ipadviewport',fit);document.fonts?.ready.then(fit);
 function followCaseAnchor(){if(['#base-range','#prototype','#mechanics','#risks','#monetization','#monetization-end'].includes(location.hash))requestAnimationFrame(()=>scrollTo({top:scrollY+q(location.hash).getBoundingClientRect().top-32,behavior:'instant'}));}addEventListener('hashchange',followCaseAnchor);addEventListener('pageshow',followCaseAnchor);followCaseAnchor();
 function clickable(id,label,action){const n=q('[data-node-id="'+id+'"]');if(!n)return;n.tabIndex=0;n.setAttribute('role','button');n.setAttribute('aria-label',label);n.addEventListener('click',action);n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action();}});}
 
@@ -101,7 +101,7 @@ function selectDemoCategory(key){if(!Object.hasOwn(categoryNames,key))return;dem
 // Calibrate the visible body, not the differing transparent PNG canvases.
 // [native width, native height, head top, sole bottom, body axis]
 const demoFrames={"boy":{"intelligence":[1024,1536,119,1428,480.5],"longevity":[1024,1536,81,1457,488.0],"strength":[1024,1536,84,1419,509.0],"immune":[1024,1536,67,1440,512.5],"neuro":[1024,1536,77,1485,511.5],"appearance":[1024,1536,52,1469,528.0],"neutral":[720,1200,113,1169,400]},"girl":{"intelligence":[1208,1302,92,1243,618.5],"longevity":[1078,1459,65,1381,529.5],"strength":[1208,1302,52,1241,607.0],"immune":[1208,1302,91,1244,617.5],"neuro":[1086,1448,96,1387,552.0],"appearance":[1086,1448,96,1382,538.5],"neutral":[971,1619,125,1534,509]}};
-function placeDemoAvatar(img,kind){const [w,h,head,sole,axis]=demoFrames[demoGender][kind],scale=(demoGender==='boy'?760:697)/(sole-head);
+function placeDemoAvatar(img,kind){const [w,h,head,sole,axis]=window.portfolioIPad&&demoGender==='boy'&&kind==='neutral'?[1103,1426,72,1350,553.5]:demoFrames[demoGender][kind],scale=(demoGender==='boy'?760:697)/(sole-head);
  img.style.width=w*scale+'px';img.style.height=h*scale+'px';img.style.left=(434.16-axis*scale)+'px';img.style.top=(800-sole*scale)+'px';
  img.dataset.bodyHeight=demoGender==='boy'?'760':'697';img.dataset.sole='800';
 }

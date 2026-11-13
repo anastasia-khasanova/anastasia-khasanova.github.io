@@ -361,3 +361,7 @@ html.genome-base-study,html.genome-base-study body{background:#000;overflow:hidd
 /* The embedded range animation must not inherit the editor mobile column. */
 .genome-base-study .app-shell{width:100%;max-width:none;height:auto;min-height:0;flex-direction:row;align-items:flex-start;justify-content:center;gap:0}
 .genome-base-study .right-column{align-self:flex-start;margin:0}
+
+/* Keep native iframe layout intact on iPad; WebKit zoom can paint only a subrectangle. */
+html.is-ipad{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media(min-width:1101px){.is-ipad .tablet-stage{zoom:1;transform:scale(var(--tablet-scale,1));transform-origin:center}}

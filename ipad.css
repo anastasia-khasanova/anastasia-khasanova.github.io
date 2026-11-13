@@ -42,3 +42,9 @@ html.is-ipad:has(.fullscreen-home){width:100%;max-width:none}
 .is-ipad .ipad-video-start{position:fixed;right:24px;bottom:54px;z-index:8;min-height:44px;padding:10px 16px;border:1px solid #ffffff60;background:#0059ff;color:#fff;font:13px Onest,Arial,sans-serif}
 .is-ipad .ipad-video-start[hidden]{display:none}
 .is-ipad .zc-mobile-header [data-node-id="820:327"] p{font:400 13px/1.4 Onest,Arial,sans-serif!important}.is-ipad .zc-mobile-header{padding:28px clamp(24px,6.7vw,60px) 0}.is-ipad .mobile-case .case-header{padding-inline:clamp(24px,6.7vw,60px)}
+
+/* iPad v3: suppress WebKit landscape text inflation inside fixed Figma geometry.
+   Explicit root/body widths also invalidate the cached portrait containing block. */
+html.is-ipad{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.is-ipad:has(.fullscreen-home),.is-ipad .fullscreen-home{width:var(--ipad-width,100dvw);max-width:none}
+.is-ipad .showreel{width:var(--ipad-width,100dvw);height:var(--ipad-height,100dvh)}
