@@ -45,7 +45,7 @@
   const footer=group('zc-mobile-ending');move('930:7966',footer);
   built=true;
  }
- function size(){if(!breakpoint.matches)return;for(const f of frames){if(f.slot.hidden)continue;const scale=f.slot.clientWidth/f.width;f.stage.style.zoom=scale;f.stage.style.setProperty('--mobile-scale',scale);f.slot.style.height=Math.max(f.height,f.stage.scrollHeight)*scale+'px';}}
+ function size(){if(!breakpoint.matches)return;for(const f of frames){if(f.slot.hidden)continue;const scale=f.slot.clientWidth/f.width;f.stage.style.zoom=window.portfolioIPad?1:scale;f.stage.style.transform=window.portfolioIPad?'scale('+scale+')':'none';f.stage.style.setProperty('--mobile-scale',scale);f.slot.style.height=Math.max(f.height,f.stage.scrollHeight)*scale+'px';}}
  function sync(){
   document.documentElement.classList.toggle('zoo-mobile',breakpoint.matches);mobile.hidden=!breakpoint.matches;
   if(breakpoint.matches){if(!built)build();else for(const {el,parent}of moves)parent.append(el);holder.setAttribute('aria-hidden','true');}

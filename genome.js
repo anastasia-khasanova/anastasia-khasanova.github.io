@@ -1,5 +1,7 @@
 
 (()=>{const q=s=>document.querySelector(s);const canvas=q('.gc-canvas'),holder=q('.gc-holder');
+// Refresh embedded documents only on iPad so their old cached HTML cannot retain the WebM path.
+if(window.portfolioIPad)document.querySelectorAll('iframe[src^="genome-app.html"],iframe[src^="genome-settings.html"]').forEach(frame=>{const [base,hash]=frame.getAttribute('src').split('#');frame.src=base+(base.includes('?')?'&':'?')+'ipad-rev=20261113-2'+(hash?'#'+hash:'');});
 const riskMotion=matchMedia('(prefers-reduced-motion:reduce)');let riskState=null,riskRaf=0;
 // Keep the introduction above the pinned tablet without fading it.
 const riskCopyFlow=document.createElement('div');riskCopyFlow.className='gc-risk-copy-flow';q('.gc-risk-scroll').append(riskCopyFlow);riskCopyFlow.append(q('[data-node-id="770:2479"]'));
@@ -107,9 +109,10 @@ let avatarRevision=0,currentDemoAvatar=null,currentAvatarKey='';
 async function transitionDemoAvatar(kind){
  const key=demoGender+':'+kind;if(key===currentAvatarKey)return;
  currentAvatarKey=key;const revision=++avatarRevision;
- const neutralBoy=kind==='neutral'&&demoGender==='boy';
+ const ipadAvatar=window.portfolioIPad===true;
+ const neutralBoy=kind==='neutral'&&demoGender==='boy'&&!ipadAvatar;
  const next=neutralBoy?q('.gc-demo-boy-reference'):new Image();
- if(!neutralBoy){next.className='gc-demo-avatar';next.src=kind==='neutral'?'assets/genome-case/girl-neutral-white-v2.png':'assets/genome-case/avatars-20261109/'+demoGender+'-'+kind+'.png';next.alt=(demoGender==='boy'?'Мальчик':'Девочка')+(demoCategory?' — '+categoryNames[demoCategory]:' — начальное состояние');}
+ if(!neutralBoy){next.className='gc-demo-avatar';next.src=kind==='neutral'?(demoGender==='boy'?'assets/genome-case/boy-neutral-white.png':'assets/genome-case/girl-neutral-white-v2.png'):'assets/genome-case/avatars-20261109/'+demoGender+'-'+kind+'.png';next.alt=(demoGender==='boy'?'Мальчик':'Девочка')+(demoCategory?' — '+categoryNames[demoCategory]:' — начальное состояние');}
  placeDemoAvatar(next,kind);
  if(!neutralBoy){try{await next.decode();}catch{if(revision===avatarRevision)currentAvatarKey='';return;}}
  if(revision!==avatarRevision)return;

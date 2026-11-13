@@ -17,6 +17,16 @@ const videos=[...document.querySelectorAll('.showreel-video')],rows=[...document
 const motion=matchMedia('(prefers-reduced-motion: reduce)');let selected=0,filter='all',front=0,timer=null,paused=motion.matches,revision=0;
 // First preview is 7.33s; leave 1.13s for the outgoing crossfade before it loops.
 const slideDuration=6200;let rowProgress=null;
+const ipadMedia=new Map();let ipadStart=null;
+if(ipad){
+ const settings=[['assets/ipad-memory-hero.mp4','assets/ipad-memory-hero.jpg'],null,['assets/zoo-case/video/keeper-portfolio-fit-timeline.mp4','assets/zoo-case/video/keeper-fit-timeline-poster.png'],['assets/fitness-hero.mp4','assets/ipad-fitness-poster.png']];
+ const third=document.createElement('video');third.className='showreel-video';videos[0].parentElement.insertBefore(third,videos[0]);videos.push(third);
+ [0,2,3].forEach((index,i)=>{const v=videos[i];v.pause();v.removeAttribute('autoplay');v.muted=true;v.defaultMuted=true;v.playsInline=true;v.loop=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.preload=index===0?'auto':'metadata';v.poster=settings[index][1];v.src=settings[index][0];v.classList.toggle('is-active',index===0);ipadMedia.set(index,v);});
+ ipadStart=document.createElement('button');ipadStart.type='button';ipadStart.className='ipad-video-start';ipadStart.textContent='▶ Запустить видео';ipadStart.setAttribute('aria-label','Запустить видео выбранного проекта');ipadStart.hidden=true;document.body.append(ipadStart);
+ ipadStart.addEventListener('click',()=>{const v=ipadMedia.get(selected);if(v)v.play().then(()=>{ipadStart.hidden=true;}).catch(()=>{ipadStart.hidden=false;});});
+ if(!paused&&!document.hidden&&!motion.matches)videos[0].play().catch(()=>{if(selected===0)ipadStart.hidden=false;});
+}
+
 rows.forEach(row=>{const fill=document.createElement('span');fill.className='work-progress';fill.setAttribute('aria-hidden','true');row.prepend(fill);});
 const matching=()=>data.map((p,i)=>i).filter(i=>filter==='all'||data[i].category===filter);
 function schedule(){
@@ -39,24 +49,20 @@ function select(index){
  document.querySelector('.active-title').textContent=p.title;document.querySelector('.active-category').textContent=((categoryLabels[p.category]||p.category).toUpperCase()+' DESIGN');
  const still=document.querySelector('.showreel-image');
  document.body.dataset.preview=p.scene||'';syncGenome();festival.classList.toggle('is-active',p.scene==='festival');festival.contentWindow.postMessage({type:'festival-play',active:p.scene==='festival'&&!document.hidden&&!motion.matches},location.origin);
- if(p.scene){revision++;videos.forEach(pauseLater);still.classList.remove('is-active');schedule();return;}
+ if(p.scene){if(ipadStart)ipadStart.hidden=true;revision++;if(ipad)videos.forEach(v=>{v.pause();v.classList.remove('is-active');});else videos.forEach(pauseLater);still.classList.remove('is-active');schedule();return;}
  if(p.image){revision++;videos.forEach(pauseLater);still.src=p.image;still.classList.add('is-active');schedule();return;}
  if(ipad){
-  const target=videos[1-front],previous=videos[front],ticket=++revision;
-  const posters={0:'assets/dome-portfolio-clean-poster.png',2:'assets/zoo-case/video/keeper-fit-timeline-poster.png'};
-  target.oncanplay=null;target.onloadeddata=null;target.onplaying=null;
+  const target=ipadMedia.get(index),ticket=++revision;
   clearTimeout(fadeTimers.get(target));
-  target.muted=true;target.defaultMuted=true;target.playsInline=true;
-  target.poster=posters[index]||'';
-  if(target.poster){still.src=target.poster;still.classList.add('is-active');}else still.classList.remove('is-active');
-  // Make the new video visible before requesting playback: WebKit may suspend hidden media.
-  previous.classList.remove('is-active');target.classList.add('is-active');front=videos.indexOf(target);
-  target.src=p.src;
-  function play(){if(ticket===revision&&!paused&&!document.hidden&&!motion.matches)target.play().catch(()=>{});}
-  function decoded(){if(ticket!==revision)return;still.classList.remove('is-active');play();}
-  target.onloadeddata=decoded;target.oncanplay=play;target.onplaying=()=>{if(ticket===revision)still.classList.remove('is-active');};
-  target.load();play();previous.pause();schedule();return;
+  still.src=target.poster;still.classList.add('is-active');ipadStart.hidden=true;
+  videos.forEach(v=>{v.classList.toggle('is-active',v===target);if(v!==target)v.pause();});front=videos.indexOf(target);
+  const current=()=>ticket===revision&&selected===index;
+  function play(){if(current()&&!paused&&!document.hidden&&!motion.matches)target.play().catch(()=>{if(current())ipadStart.hidden=false;});}
+  function decoded(){if(!current())return;still.classList.remove('is-active');ipadStart.hidden=true;}
+  target.onloadeddata=()=>{if(!current())return;decoded();play();};target.oncanplay=play;target.onplaying=decoded;target.onerror=()=>{if(current()){still.classList.add('is-active');ipadStart.hidden=false;}};
+  if(target.readyState>=2)decoded();play();schedule();return;
  }
+
  const target=videos[1-front],previous=videos[front],ticket=++revision;
  target.oncanplay=null;target.src=p.src;target.load();
  function reveal(){if(ticket!==revision)return;target.oncanplay=null;clearTimeout(fadeTimers.get(target));still.classList.remove('is-active');target.classList.add('is-active');previous.classList.remove('is-active');if(!paused&&!document.hidden&&!motion.matches)target.play().catch(()=>{});else target.pause();pauseLater(previous);front=videos.indexOf(target);}

@@ -1,7 +1,7 @@
 /* All overrides require an actual iPad, detected in ipad-support.js. */
 html.is-ipad:has(.fullscreen-home){height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
-.is-ipad .fullscreen-home{width:var(--ipad-width,100%);max-width:100%;min-height:max(var(--ipad-height,100svh),760px)}
-.is-ipad .showreel{right:auto;bottom:auto;width:var(--ipad-width,100vw);height:var(--ipad-height,100svh)}
+.is-ipad .fullscreen-home{width:100%;max-width:none;min-height:max(var(--ipad-height,100svh),760px)}
+.is-ipad .showreel{right:auto;bottom:auto;width:100vw;height:100dvh}
 .is-ipad .showreel-video,.is-ipad .showreel-image{transition:none}
 .is-ipad .showreel-image{z-index:1}
 .is-ipad .showreel-shade{z-index:2}
@@ -25,3 +25,20 @@ html.is-ipad:has(.fullscreen-home){height:auto;min-height:100%;overflow-x:hidden
 .is-ipad .mobile-case .case-header .case-figma{grid-column:2;grid-row:1;justify-self:end}
 .is-ipad .case-video{background:#000}
 .is-ipad .genome-preview,.is-ipad .festival-preview{transition:none}
+
+/* iPad v2: let CSS own viewport sizing; JS variables are for available vertical space only. */
+html.is-ipad:has(.fullscreen-home){width:100%;max-width:none}
+.is-ipad .fullscreen-home{min-width:0;box-sizing:border-box}
+.is-ipad .mobile-case .case-header{grid-template-columns:minmax(100px,1fr) minmax(0,2.5fr) minmax(100px,1fr);align-items:center;padding:28px clamp(24px,4.7vw,60px);gap:18px;font-size:13px}
+.is-ipad .mobile-case .case-header-note{grid-column:2;grid-row:1;color:rgba(255,255,255,.62);font-size:13px;line-height:1.4;font-weight:400;letter-spacing:0}
+.is-ipad .mobile-case .case-header .case-figma{grid-column:3;grid-row:1;white-space:nowrap;padding:14px 20px;font-size:13px}
+.is-ipad .mobile-case .case-back{white-space:nowrap}
+.is-ipad .zc-mobile-header [data-node-id="820:327"]{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2.5fr) minmax(100px,1fr);padding:8px 0;gap:18px}
+.is-ipad .zc-mobile-header [data-node-id="820:329"]{display:block;grid-column:2;grid-row:1;font-size:13px;white-space:normal;text-align:center}
+.is-ipad .zc-mobile-header [data-node-id="820:330"]{grid-column:3;grid-row:1;justify-self:end;padding:14px 20px;white-space:nowrap}
+.is-ipad .zc-interactive-map .zc-map-world{will-change:transform;transition:none!important}
+.is-ipad .zc-interactive-map{contain:paint;touch-action:none}
+.is-ipad .gc-demo-stage video.gc-demo-boy-reference{display:none!important}
+.is-ipad .ipad-video-start{position:fixed;right:24px;bottom:54px;z-index:8;min-height:44px;padding:10px 16px;border:1px solid #ffffff60;background:#0059ff;color:#fff;font:13px Onest,Arial,sans-serif}
+.is-ipad .ipad-video-start[hidden]{display:none}
+.is-ipad .zc-mobile-header [data-node-id="820:327"] p{font:400 13px/1.4 Onest,Arial,sans-serif!important}.is-ipad .zc-mobile-header{padding:28px clamp(24px,6.7vw,60px) 0}.is-ipad .mobile-case .case-header{padding-inline:clamp(24px,6.7vw,60px)}

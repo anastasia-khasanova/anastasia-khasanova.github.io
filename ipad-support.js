@@ -5,12 +5,12 @@ if(!ipad)return;
 window.portfolioIPad=true;
 const root=document.documentElement;root.classList.add('is-ipad');
 function viewport(){
- const view=window.visualViewport,normal=!view||Math.abs(view.scale-1)<.05;
- const width=normal&&view?view.width:innerWidth,height=normal&&view?view.height:innerHeight;
+ // Layout width must never come from visualViewport: WebKit can retain its portrait value after rotation.
+ const width=innerWidth||root.clientWidth,height=innerHeight||root.clientHeight;
  root.style.setProperty('--ipad-width',Math.round(width)+'px');root.style.setProperty('--ipad-height',Math.round(height)+'px');
  root.classList.toggle('ipad-landscape',width>height);
  window.dispatchEvent(new Event('ipadviewport'));
 }
-let settle;function refresh(){viewport();clearTimeout(settle);settle=setTimeout(viewport,350);}
+let settle,late;function refresh(){viewport();clearTimeout(settle);clearTimeout(late);settle=setTimeout(viewport,350);late=setTimeout(viewport,900);}
 viewport();addEventListener('resize',refresh);addEventListener('orientationchange',refresh);addEventListener('pageshow',refresh);window.visualViewport?.addEventListener('resize',refresh);
 })();
