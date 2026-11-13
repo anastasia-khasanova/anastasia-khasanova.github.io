@@ -34,7 +34,7 @@ for(const root of document.querySelectorAll('.memory-demo')){
  let auto=false,visible=false,clock=0,last=null,state='menu',current=2022,selection=new Set(),autoStep=-1,suppressClickUntil=0,networkMotion=!reduce.matches,lastMemory=-1;
  const toolbar=root.querySelector('.demo-toolbar'),play=root.querySelector('.demo-play');
  const hint=root.querySelector('.demo-hint');
- let mobilePanel=null;
+ let mobilePanel=null,mobilePeople=null,mobileStory=null;
  const filterButtons=selector=>[...new Set([...root.querySelectorAll(selector),...(mobilePanel?.querySelectorAll(selector)||[])])];
  if(mode==='search'){toolbar.classList.add('random-demo-toolbar');const restart=toolbar.querySelector('.demo-restart');restart.innerHTML='<span aria-hidden="true">↺</span><span>Начать заново</span>';restart.setAttribute('aria-label','Начать заново: сбросить выбранные фильтры');hint.classList.add('random-demo-hint','search-demo-hint');hint.innerHTML='Выберите эмоции и людей<br>и откройте конкретное воспоминание';}
  if(mode==='random'){toolbar.classList.add('random-demo-toolbar');hint.classList.add('random-demo-hint');hint.innerHTML='Выберите эмоции и людей<br>и откройте воспоминание';const restart=toolbar.querySelector('.demo-restart');restart.innerHTML='<span aria-hidden="true">↺</span><span>Начать заново</span>';restart.setAttribute('aria-label','Начать заново: вернуться к выбору эмоций');root.addEventListener('pointerdown',()=>root.classList.add('has-interacted'));root.addEventListener('keydown',()=>root.classList.add('has-interacted'));}
@@ -50,7 +50,7 @@ for(const root of document.querySelectorAll('.memory-demo')){
  function renderPlay(){const playing=mode==='random'?networkMotion:auto;play.hidden=true;play.innerHTML=`<span class="${playing?'pause-icon':'play-icon'}" aria-hidden="true"></span>`;play.setAttribute('aria-label',mode==='random'?(playing?'Приостановить движение связей':'Продолжить движение связей'):(playing?'Приостановить демонстрацию':'Запустить демонстрацию'));root.classList.toggle('is-network-paused',mode==='random'&&!networkMotion);}
 
  function stop(){auto=false;renderPlay();}
- function setState(next){state=next;root.dataset.state=next;toolbar.hidden=next==='menu'&&!selection.size&&!selectedPeople.size;hint.hidden=next!=='menu'||root.classList.contains('has-interacted');if(mobilePanel){mobilePanel.hidden=next!=='menu';sizeMobileScene();}for(const el of [menu,years,memory]){const active=el.classList.contains(`demo-${next}`);el.inert=!active;el.setAttribute('aria-hidden',String(!active));}renderPlay();}
+ function setState(next){state=next;root.dataset.state=next;toolbar.hidden=next==='menu'&&!selection.size&&!selectedPeople.size;hint.hidden=next!=='menu'||root.classList.contains('has-interacted');if(mobilePanel){mobilePanel.hidden=next!=='menu';mobileStory.hidden=next!=='memory';syncMobilePeople();sizeMobileScene();}for(const el of [menu,years,memory]){const active=el.classList.contains(`demo-${next}`);el.inert=!active;el.setAttribute('aria-hidden',String(!active));}renderPlay();}
  const control=menu.querySelector('[data-node-id="103:4956"]');
  {
   for(const [id,cls] of [['103:4957','demo-find'],['635:11785','demo-random']]){const old=menu.querySelector(`[data-node-id="${id}"]`);const button=document.createElement('button');for(const attr of old.attributes)button.setAttribute(attr.name,attr.value);button.type='button';button.classList.add(cls,'source-control');button.innerHTML=old.innerHTML;old.replaceWith(button);if(cls==='demo-find'&&mode==='random'){button.setAttribute('aria-disabled','true');button.tabIndex=-1;}}
@@ -118,6 +118,7 @@ for(const root of document.querySelectorAll('.memory-demo')){
    const selected=selectedPeople.has(button.dataset.person);button.setAttribute('aria-pressed',String(selected));button.disabled=atLimit&&!selected;
   }
   refreshPersonCounts();
+  syncMobilePeople();
   const summary=years.querySelector('.search-filter-summary');
   if(summary)summary.textContent=[...selection].map(i=>emotions[i]).concat([...selectedPeople.values()].map(p=>p.name)).join(' · ');
  }
@@ -158,12 +159,7 @@ for(const root of document.querySelectorAll('.memory-demo')){
    const face=document.createElement('span');face.className='search-person-face';const portrait=document.createElement('img');portrait.src=person.src;portrait.alt='';face.appendChild(portrait);
    const hit=document.createElement('button');hit.type='button';hit.className='search-person-hit';hit.dataset.person=person.id;hit.setAttribute('aria-pressed','false');
    details.addEventListener('click',e=>{e.stopPropagation();hit.click();});
-   hit.addEventListener('click',()=>{
-    if(selectedPeople.has(person.id)){selectedPeople.delete(person.id);}
-    else if(selectedPeople.size>=MAX_SEARCH_PEOPLE){return;}
-    else{selectedPeople.set(person.id,{name:person.name,src:person.src});}
-    updateSearchFilters();announceText(selectedPeople.size?'Выбраны: '+[...selectedPeople.values()].map(p=>p.name).join(', '):'Выбор людей снят');
-   });
+   hit.addEventListener('click',()=>togglePerson(person));
    card.dataset.detailSide=person.x+person.w/2>=1027.42?'right':'left';
    const positionDetails=()=>positionPersonDetails(card,peopleLayer);
    card.addEventListener('pointerenter',positionDetails);card.addEventListener('focusin',positionDetails);
@@ -217,6 +213,7 @@ for(const root of document.querySelectorAll('.memory-demo')){
   memory.querySelector('[data-node-id="531:8178"] p').textContent=story.temperature;
   memory.querySelector('[data-node-id="531:8181"] p').textContent=story.time;
   memory.querySelector('[data-node-id="I531:8548;635:11371"] p').textContent=story.date;
+  renderMobileStory(story);
   return story;
  }
  const cards=yearData.map(d=>`<button type="button" class="year-card" data-year="${d.year}" aria-label="Выбрать ${d.year} год"><span class="year-card-invitation" aria-hidden="true"><span></span><span></span></span><span class="memory-orb"><img alt="" src="${d.src}" loading="lazy"></span><span class="year-label">${d.year}</span></button>`).join('');
@@ -300,6 +297,7 @@ for(const root of document.querySelectorAll('.memory-demo')){
  function openYear(){
   root.classList.add('year-result');setState('memory');
   const mainStory=pickYearStory(current);
+  renderMobileStory(mainStory);
   const chosenPeople=[...selectedPeople].map(([id,p])=>({id,...p}));
   const pool=[mainStory.src,...yearData.filter(d=>d.year!==current).map(d=>d.src),...Array.from({length:36},(_,i)=>i+1).filter(i=>i!==11&&i!==34).map(i=>yearPhoto(i))];
   window.createYearEvents({host:memory,geometry:yearEventGeometry,year:current,emotionIds:selection,people:chosenPeople,photos:pool,photoRotations,mainStory,emotionStates,variant:searchRevision,eligibleYears:matchingYears(),peopleCatalog:peopleGeometry,photoPeople:Object.fromEntries(memoryCases.map(c=>[img('75:249',c.photo),peopleGeometry.filter(p=>c.people.map(i=>['Миша','Таня','Семён'][i]).includes(p.name))])),onEditFilter:view=>showSearchView(view,true),onRemoveFilter:(kind,id)=>{if(kind==='people')selectedPeople.delete(id);else selection.delete(id);updatePetals();chooseYear(current);if(matchingYears().length)openYear();else setState('years');},onBack:()=>{setState('years');chooseYear(current);announceText('Выбор года');}});
@@ -323,11 +321,17 @@ for(const root of document.querySelectorAll('.memory-demo')){
  // One shared clock per scene, suspended offscreen. User interaction stops auto playback.
  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;root.classList.toggle('demo-visible',visible);last=null;},{threshold:.15});observer.observe(root);
  function tick(now){if(auto&&visible&&!document.hidden){if(last!==null)clock+=(now-last)/1000;const t=clock%18;const step=Math.floor(t);if(step!==autoStep){autoStep=step;if(mode==='random'){/* Only the random button changes this screen. */}else{if(t<2)setState('menu');else if(t<15){setState('years');chooseYear(t<5?2022:t<8?2023:t<11?2024:t<13?2025:2022);}else setState('menu');}}}last=now;requestAnimationFrame(tick);}
+ function togglePerson(person){if(selectedPeople.has(person.id))selectedPeople.delete(person.id);else if(selectedPeople.size<MAX_SEARCH_PEOPLE)selectedPeople.set(person.id,{name:person.name,src:person.src});else return;updateSearchFilters();announceText(selectedPeople.size?'Выбраны: '+[...selectedPeople.values()].map(p=>p.name).join(', '):'Выбор людей снят');}
+ function syncMobilePeople(){if(!mobilePeople)return;mobilePeople.hidden=state!=='menu'||root.dataset.searchView!=='people';for(const button of mobilePeople.querySelectorAll('button')){const selected=selectedPeople.has(button.dataset.person);button.setAttribute('aria-pressed',String(selected));button.disabled=!selected&&selectedPeople.size>=MAX_SEARCH_PEOPLE;}}
+ function renderMobileStory(story){if(!mobileStory)return;mobileStory.replaceChildren();const heading=document.createElement('h3');heading.textContent=story.title;const meta=document.createElement('p');meta.className='mobile-story-meta';meta.textContent=[story.place,story.date,story.time,story.temperature].filter(Boolean).join(' · ');mobileStory.append(heading,meta);const names=story.peopleNames||story.people?.map(i=>['Миша','Таня','Семён'][i])||[];if(names.length){const people=document.createElement('p');people.className='mobile-story-people';people.textContent=names.join(' · ');mobileStory.append(people);}for(const text of story.paragraphs||[story.description])if(text){const p=document.createElement('p');p.textContent=text;mobileStory.append(p);}const actions=document.createElement('div');actions.className='mobile-story-actions';for(const [label,view] of [['Изменить эмоции','emotions'],['Изменить людей','people']]){const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>showSearchView(view,true));actions.append(b);}mobileStory.append(actions);requestAnimationFrame(()=>{if(presentation.offsetParent!==null&&state==='memory')mobileStory.scrollIntoView({block:'nearest',behavior:reduce.matches?'instant':'smooth'});});}
  function sizeMobileScene(){const visual=presentation.querySelector('.mobile-demo-visual');visual.dataset.height=state==='menu'?(matchMedia('(max-width:600px)').matches?'2300':'2000'):'1700';visual.style.height=Number(visual.dataset.height)*visual.clientWidth/1920+'px';}
  // Mobile controls use actual CSS pixels outside the scaled illustration.
  // Move the existing live controls, preserving listeners and selected filters.
  if(presentation.classList.contains('mobile-demo-block')){
   mobilePanel=document.createElement('div');mobilePanel.className='demo-mobile-controls';mobilePanel.setAttribute('role','group');mobilePanel.setAttribute('aria-label','Управление поиском воспоминаний');
+  mobilePeople=document.createElement('div');mobilePeople.className='demo-mobile-people';mobilePeople.hidden=true;mobilePeople.setAttribute('role','group');mobilePeople.setAttribute('aria-label','Выбор людей');
+  for(const person of peopleGeometry){const button=document.createElement('button');button.type='button';button.dataset.person=person.id;button.setAttribute('aria-label','Выбрать: '+person.name);button.setAttribute('aria-pressed','false');const photo=document.createElement('img');photo.src=person.src;photo.alt='';const name=document.createElement('span');name.textContent=person.name;button.append(photo,name);button.addEventListener('click',()=>togglePerson(person));mobilePeople.append(button);}mobilePanel.append(mobilePeople);
+  mobileStory=document.createElement('article');mobileStory.className='demo-mobile-story';mobileStory.hidden=true;mobileStory.setAttribute('aria-label','Открытое воспоминание');presentation.insertBefore(mobileStory,toolbar);
   presentation.insertBefore(hint,presentation.firstChild);
   presentation.insertBefore(mobilePanel,toolbar);mobilePanel.append(control);new ResizeObserver(sizeMobileScene).observe(presentation.querySelector('.mobile-demo-visual'));
   for(const button of control.querySelectorAll('.emotion-filter,.people-filter')){const image=document.createElement('img');image.src=button.querySelector('img').src;image.alt='';const label=document.createElement('span');label.className='mobile-filter-label';label.textContent=button.classList.contains('emotion-filter')?'Эмоции':'Люди';button.replaceChildren(image,label);}
