@@ -1166,6 +1166,24 @@
  .mobile-demo-block .memory-demo[data-state="memory"] .demo-memory{mask-image:none!important;-webkit-mask-image:none!important}
 }
 
+/* v8: scale labels with the visible wheel and fade only the coloured background. */
+@media(max-width:1024px){
+ .mobile-demo-block .demo-menu [data-node-id="103:4938"] p{font-size:var(--emotion-label-size,30px)!important;line-height:1.05!important}
+ .mobile-demo-block .emotion-background{mask-image:radial-gradient(ellipse closest-side at center,#000 32%,#000b 60%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse closest-side at center,#000 32%,#000b 60%,transparent 100%)}
+}
+.is-ipad .design-section .demo-menu [data-node-id="103:4938"] p{font-size:28px!important;line-height:1.05!important}
+.is-ipad .memory-demo .emotion-background{mask-image:radial-gradient(ellipse closest-side at center,#000 32%,#000b 60%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse closest-side at center,#000 32%,#000b 60%,transparent 100%)}
+/* A touch target must stay under the finger instead of orbiting or becoming a hover card. */
+.is-ipad .search-person-orbit,.is-ipad .search-person-orbit>.search-person{animation:none!important}
+.is-ipad .search-person .person-details{display:none!important}
+.is-ipad .search-person[data-detail-side]>.search-person-hit{position:absolute!important;left:50%!important;top:50%!important;translate:-50% -50%;width:max(100%,72px)!important;height:max(100%,72px)!important;z-index:10;pointer-events:auto!important;touch-action:manipulation;border-radius:50%}
+.is-ipad .search-person:has(>.search-person-hit[aria-pressed="true"])>.search-person-face{outline:3px solid #8cccff;outline-offset:3px;box-shadow:0 0 16px #8cccff80}
+@media(pointer:coarse){
+ .search-person-orbit,.search-person-orbit>.search-person{animation:none!important}
+ .search-person .person-details{display:none!important}
+ .search-person[data-detail-side]>.search-person-hit{left:50%!important;top:50%!important;translate:-50% -50%;width:max(100%,72px)!important;height:max(100%,72px)!important;z-index:10;touch-action:manipulation}
+}
+
 .d0{display:contents;position:relative;width:100%;height:100%}
 .d1{position:absolute;height:1162px;overflow:hidden;left:50%;top:428px;width:1920px;transform:translate(-50%,0px) rotate(0deg)}
 .d2{position:absolute;height:1162px;left:50%;top:428px;width:1920px;transform:translate(-50%,0px) rotate(0deg)}

@@ -1014,6 +1014,13 @@ dialog{background:#111;color:#f5f5f7;border:1px solid #ffffff30;border-radius:16
 
 .zc-touch-pan,.zc-touch-pan *{touch-action:none!important}.zc-touch-pan .zc-map-world,.zc-preview-map-pan>div{will-change:transform}
 
+/* Touch maps scroll on the browser compositor, without per-frame world transforms. */
+.zc-native-root,.zc-native-root .zc-native-pan,.zc-native-root .zc-native-pan *{touch-action:auto!important}
+.zc-native-pan{position:absolute;left:0;top:0;height:100%;overflow:auto;overscroll-behavior:contain;scroll-behavior:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;z-index:0}
+.zc-native-pan::-webkit-scrollbar{display:none}
+.zc-native-map-surface{position:relative;contain:layout style}
+.zc-native-map-surface>.zc-map-world,.zc-native-map-surface>[data-node-id="913:5912"]{left:var(--pan-origin-x)!important;top:var(--pan-origin-y)!important;bottom:auto!important;zoom:1!important;transform:scale(var(--pan-world-scale))!important;transform-origin:0 0;transition:none!important;will-change:transform}
+
 /* Figma Heading/H2-Medium */
 [data-node-id="I898:9938;232:2226"],[data-node-id="I898:9938;232:2226"]>p,[data-hero-node-id="I898:9938;232:2226"],[data-hero-node-id="I898:9938;232:2226"]>p{font-family:"Ubuntu",sans-serif;font-style:normal;font-weight:400;font-size:24px;line-height:1;letter-spacing:-0.48px;font-synthesis:none;text-rendering:geometricPrecision;}
 /* Figma Body/B1-Regular */

@@ -17,5 +17,21 @@
   function release(e,cancel){if(!drag||e.pointerId!==drag.id)return;const d=drag;drag=null;viewport.classList.remove('is-dragging');cancelAnimationFrame(frame);frame=0;draw();finish(d.moved);if(!d.moved||cancel||reduce.matches||e.timeStamp-d.time>100)return;let vx=d.vx,vy=d.vy,last=performance.now();function glide(now){const dt=Math.min(32,now-last);last=now;const state=get(),dx=vx*dt/d.scale,dy=vy*dt/d.scale;set({x:state.x+dx,y:state.y+dy});draw();const result=get();if(Math.abs(result.x-state.x)<.01)vx=0;if(Math.abs(result.y-state.y)<.01)vy=0;const decay=Math.exp(-dt/180);vx*=decay;vy*=decay;if(Math.hypot(vx,vy)>.025)inertia=requestAnimationFrame(glide);else inertia=0;}inertia=requestAnimationFrame(glide);}
   viewport.addEventListener('pointerup',e=>release(e,false));viewport.addEventListener('pointercancel',e=>release(e,true));viewport.addEventListener('lostpointercapture',e=>release(e,true));document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});reduce.addEventListener('change',stop);
  }
- window.PortfolioTouchPan={handles,attach};
+ // Let the browser compositor own touch momentum. JS only synchronises overlays.
+ function native(viewport,{world,get,set,draw,size,finish=()=>{}}){
+  if(!window.portfolioIPad&&!matchMedia('(pointer:coarse)').matches)return null;
+  const scroller=document.createElement('div'),surface=document.createElement('div');
+  scroller.className='zc-native-pan';surface.className='zc-native-map-surface';
+  viewport.classList.add('zc-native-root');scroller.append(surface);surface.append(world);viewport.prepend(scroller);
+  let frame=0,key='',geometry;
+  function sync(){geometry=size();const g=geometry,next=[g.w,g.h,g.padX,g.padY,g.scale,g.viewWidth].join(':');
+   if(next!==key){key=next;scroller.style.width=g.viewWidth+'px';surface.style.width=(g.w+2*g.padX)+'px';surface.style.height=(g.h+2*g.padY)+'px';world.style.setProperty('--pan-origin-x',g.padX+'px');world.style.setProperty('--pan-origin-y',g.padY+'px');world.style.setProperty('--pan-world-scale',String(g.scale));}
+   const state=get(),left=g.padX-g.offsetX-state.x,top=g.padY-g.offsetY-state.y;
+   if(Math.abs(scroller.scrollLeft-left)>.5)scroller.scrollLeft=left;if(Math.abs(scroller.scrollTop-top)>.5)scroller.scrollTop=top;
+  }
+  scroller.addEventListener('pointerdown',()=>finish(false),{passive:true});
+  scroller.addEventListener('scroll',()=>{if(frame)return;frame=requestAnimationFrame(()=>{frame=0;const g=geometry;set({x:g.padX-g.offsetX-scroller.scrollLeft,y:g.padY-g.offsetY-scroller.scrollTop});finish(true);draw();});},{passive:true});
+  return {sync,scroller};
+ }
+ window.PortfolioTouchPan={handles,attach,native};
 })();
